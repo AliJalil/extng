@@ -1,0 +1,95 @@
+
+@font-face {
+    font-family: 'TheSans Bold';
+    font-style: normal;
+    font-weight: 700;
+    src: url(../fonts/TheSans-Bold.eot);
+    src: url(../fonts/TheSans-Bold.eot?#iefix) format('embedded-opentype'),
+    url(../fonts/TheSans-Bold.woff2) format('woff2'),
+    url(../fonts/TheSans-Bold.woff) format('woff'),
+    url(../fonts/TheSans-Bold.ttf) format('truetype');
+
+}
+
+.TheSans-Bold {
+    font-family: 'TheSans Bold', serif;
+}
+
+
+.panel-primary>.panel-heading {
+    color: #fff;
+    background-color: #07aae9 !important;
+    border-color: #07aae9 !important;
+}
+
+.panel-primary {
+    border-color: #07aae9 !important;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #07aae9 !important;
+    border-color: #07aae9 !important;
+}
+
+
+* {
+    font-family: "TheSans Bold";
+    font-size: 12px;
+}
+
+.header-back-ground {
+    background-color: #ff44;
+}
+
+
+#permissionDiv *{
+
+    font-size: 11px;
+}
+
+div.panel {
+     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+}
+
+.col-md-6 {
+    float: right !important;
+}
+
+.col-md-4
+{
+        float: right !important;
+    }
+
+.droid-arabic-kufi{
+    font-family: 'TheSans Bold', serif;
+}
+
+body{
+    scroll-behavior: smooth;
+    font-family: 'TheSans Bold', serif;
+    direction: rtl;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+
+
+@media screen and (max-width:990px) {
+    .col-md-6 {
+        float: none !important;
+    }
+.break_line
+{
+display:none;
+}
+
+.col-md-4
+{
+        float: none !important;
+    }
+}
+
+

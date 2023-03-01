@@ -1,0 +1,178 @@
+/*****************Start for DataTable***********************/
+
+
+tbody:before {
+    content: "-";
+    display: block;
+    line-height: 1em;
+    color: transparent;
+}
+
+.no-footer{
+    font-size: 12px !important;
+}
+
+.header-label
+{
+    background: #07aae9!important;
+}
+
+/* Remove border from head cells */
+
+
+.table>tfoot>tr>td,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>thead>tr>th {
+    border-top: none !important;
+    /*border-left: solid 1px #deae71;*/
+}
+
+
+.table>thead>tr>th {
+     border-bottom: none !important;
+    /*border-left: solid 1px #deae71;*/
+}
+
+
+.table-bordered>tbody>tr>td,
+.table-bordered>tbody>tr>th,
+.table-bordered>tfoot>tr>td,
+.table-bordered>tfoot>tr>th,
+.table-bordered>thead>tr>td,
+.table-bordered>thead>tr>th {
+     border-top: none !important;
+    /*border-left: solid 1px #deae71;*/
+}
+
+/* Make Header Rounded */
+
+table, th, td {
+    border: none;
+}
+
+.table-bordered {
+    border: none;
+}
+
+.first-header-lbl
+{
+    border-radius:0 17px 0px 0 !important;
+}
+
+.last-header-lbl
+{
+    border-radius:17px 0px 0px 0 !important;
+}
+
+table th:last-child{
+    border-radius:0px 0 0;
+    border-top: none;
+}
+
+table th:first-child{
+    border-radius:0px 0 0px;
+}
+/*--------------------*/
+
+/*Body Rounded*/
+
+table tbody tr:last-child td:first-child {
+     border-bottom-right-radius: 15px;
+ }
+
+table tbody tr:last-child td:last-child {
+    border-bottom-left-radius: 15px;
+}
+
+table tbody tr:first-child td:first-child {
+   border-top-right-radius: 15px;
+}
+
+table tbody tr:first-child td:last-child {
+    border-top-left-radius: 15px;
+}
+
+table.dataTable.no-footer
+{
+    border: none;
+}
+
+.form-control {
+    border-radius: 17px;
+}
+
+table.dataTable th {
+    background-color: #07aae9;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+}
+
+
+table.dataTable td {
+    padding: 3px 5px;
+
+    vertical-align: middle !important;
+}
+
+.dataTables_length {
+    display: inline-block;
+}
+
+.dataTables_length label {
+    display: inline-flex;
+    margin-right: 15px;
+}
+
+.dataTables_filter {
+    float: right;
+
+}
+
+.dataTables_filter label {
+    display: inline-flex;
+}
+
+.dataTables_wrapper {
+    margin-top: 20px;
+    border: 1px solid #dddddd;
+    padding: 5px
+}
+
+
+div.dataTables_wrapper div.dataTables_paginate {
+    text-align: center;
+}
+table.dataTable thead th{
+    padding: 5px !important;
+
+}
+table.dataTable tbody td
+{
+    padding: 5px !important;
+
+}
+.form-control
+{
+    padding: 0px !important;
+}
+
+div.dt-buttons{
+    font-size: 10px;
+}
+
+.dataTables_wrapper .dataTables_filter input
+{
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px;
+}
+@media (min-width: 768px)
+{
+    .container {
+        max-width: 98%;
+        width: 98%;
+    }
+}
+/***************** End for DataTable***********************/

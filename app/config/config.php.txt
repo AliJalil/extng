@@ -1,0 +1,18 @@
+<?php
+
+// DB Params
+define("DB_HOST", "localhost");
+define("DB_USER", "root");
+define("DB_PASS", "");
+define("DB_NAME", "giftsDb");
+
+// App Root
+define('APPROOT', dirname(dirname(__FILE__)));
+
+// URL Root
+//define('URLROOT', 'http://imamali.tech:50031/gifts');
+define('URLROOT', 'http://localhost/gifts');
+// Site Name
+define('SITENAME', 'الهدايا والنذور');
+
+define('PERMISSION_COLUMN', 'pName');

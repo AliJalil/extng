@@ -1,0 +1,53 @@
+
+.jkj> tbody > tr:nth-of-type(odd) {
+    background-color: #E5E9EB !important;
+}
+.accordion-body {
+    border-radius: 12px;
+    margin-top: 40px;
+}
+
+@media print {
+    .ma-back {
+        display: none;
+    }
+    .ma-printadd{
+        top: -11px!important;
+      position: relative!important;
+        z-index: 1000;
+    }
+    .accordion-body{
+        border-radius: 12px;
+        margin-top: 40px;
+
+    }
+
+    .nmbjiu2{
+      visibility: hidden;
+    }
+    .ma-delete {
+        display: none;
+    }
+    #statisticsName{
+        position: absolute;
+        top: -5%;
+        left: 60px;
+        font-weight: bold;
+        margin: 0px;
+    }
+#dateInfo{
+    margin: 0px;
+    margin-top: 20px;
+}
+
+    .ma-alltable {
+        margin: 0px;
+        width: 100%;
+        border-radius: 0px;
+    }
+
+    .accordion-body {
+        margin: 0px 20PX;
+        padding: 0px;
+    }
+}
