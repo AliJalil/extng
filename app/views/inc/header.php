@@ -67,7 +67,7 @@
     <div class='ma-uyt2'>
         <div class="maprintdiv">
             <span class="maspanprint" style="display: none;color: black;font-size: 14px;font-weight: 500; ">العتبة العلوية المقدسة</span>
-            <span class="maspanprint2" style="color: #234D40;font-size: 14px;font-weight: 500; margin-left: 10px">شعبة الدفاع المدني</span>
+            <span class="maspanprint2" style="color: black;font-size: 14px;font-weight: 500; margin-left: 10px">شعبة الدفاع المدني</span>
 
 
             <ul class="ma-iu not-print">
@@ -81,99 +81,16 @@
                                     style="height: 33px; background: #fff; text-align: center; line-height: 33px;  border-radius: 5px;"
                                     class='ma-uyt'>
                                 <?php if (checkPermission($data['permissions'], 'AddGift')): ?>
-                                    <a class="ma-manga" href="<?php echo URLROOT . "/main/1"; ?>">اضافة معلومات مطفئة</a>
+                                    <a class="ma-manga" href="<?php echo URLROOT . "/main/1"; ?>">اضافة معلومات مطفأة</a>
                                 <?php endif; ?>
                                 <?php if ((checkPermission($data['permissions'], 'ViewTables')) ||
-                                    (checkPermission($data['permissions'], 'EditGift')) ||
-                                    (checkPermission($data['permissions'], 'Checker'))): ?>
+                                    (checkPermission($data['permissions'], 'EditGift'))): ?>
                                     <a class="ma-manga" href="<?php echo URLROOT . "/main/details/1"; ?>"> معلومات المطافئ</a>
                                 <?php endif; ?>
                             </div>
                         </ul>
                 </li>
             </ul>
-
-            <ul class="ma-iu not-print">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown">
-                        <div class="qw-ty">
-                            الذهب
-                        </div>
-                        <ul class="dropdown-menu">
-                            <div
-                                    style="height: 33px; background: #fff; text-align: center; line-height: 33px;  border-radius: 5px;"
-                                    class='ma-uyt'>
-                                <?php if (checkPermission($data['permissions'], 'AddGift')): ?>
-                                    <a class="ma-manga" href="<?php echo URLROOT . "/main/2"; ?>">اضافة الذهب والفضة</a>
-                                <?php endif; ?>
-                                <?php if ((checkPermission($data['permissions'], 'ViewTables')) ||
-                                    (checkPermission($data['permissions'], 'EditGift')) ||
-                                    (checkPermission($data['permissions'], 'GoldExpert')) ||
-                                    (checkPermission($data['permissions'], 'Checker'))): ?>
-                                    <a class="ma-manga" href="<?php echo URLROOT . "/main/details/2"; ?>"> جدول الذهب
-                                        والفضة</a>
-                                <?php endif; ?>
-                            </div>
-                        </ul>
-                </li>
-            </ul>
-
-            <ul class="ma-iu not-print">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown">
-                        <div class="qw-ty">
-                            العينية
-                        </div>
-                        <ul class="dropdown-menu">
-
-                            <div
-                                    style="height: 33px; background: #fff; text-align: center; line-height: 33px;  border-radius: 5px;"
-                                    class='ma-uyt'>
-                                <?php if (checkPermission($data['permissions'], 'AddGift')): ?>
-                                    <a class="ma-manga" href="<?php echo URLROOT . "/main/3"; ?>">اضافة المواد
-                                        العينية</a>
-                                <?php endif; ?>
-                                <?php if ((checkPermission($data['permissions'], 'ViewTables')) ||
-                                    (checkPermission($data['permissions'], 'EditGift')) ||
-                                    (checkPermission($data['permissions'], 'Checker'))): ?>
-                                    <a class="ma-manga" href="<?php echo URLROOT . "/main/details/3"; ?>"> جدول المواد
-                                        العينية</a>
-                                <?php endif; ?>
-                            </div>
-                        </ul>
-
-
-                </li>
-            </ul>
-
-            <ul class="ma-iu not-print">
-
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown">
-                        <div class="qw-ty">
-                            الأنعام
-                        </div>
-                        <ul class="dropdown-menu">
-
-                            <div
-                                    style="height: 33px; background: #fff; text-align: center; line-height: 33px;  border-radius: 5px;"
-                                    class='ma-uyt'>
-                                <?php if (checkPermission($data['permissions'], 'AddGift')): ?>
-                                    <a class="ma-manga" href="<?php echo URLROOT . "/main/4"; ?>">اضافة الأنعام</a>
-                                <?php endif; ?>
-                                <?php if ((checkPermission($data['permissions'], 'ViewTables')) ||
-                                    (checkPermission($data['permissions'], 'EditGift')) ||
-                                    (checkPermission($data['permissions'], 'Checker'))): ?>
-                                    <a class="ma-manga" href="<?php echo URLROOT . "/main/details/4"; ?>"> جدول
-                                        الأنعام</a>
-                                <?php endif; ?>
-                            </div>
-                        </ul>
-
-
-                </li>
-            </ul>
-
 
             <?php if (checkPermission($data['permissions'], 'StatementView')) : ?>
                 <ul class="ma-iu not-print">
@@ -188,24 +105,9 @@
                                 <div
                                         style="height: 33px; background: #fff; text-align: center; line-height: 33px;  border-radius: 5px;"
                                         class='ma-uyt'>
-                                    <a href="<?php echo URLROOT . "/statistics" ?>" class="ma-manga">عرض الكشوفات</a>
-                                    <a href="<?php echo URLROOT . "/statistics/summary/0/0" ?>" class="ma-manga">كشف
-                                        العملات العام</a>
-                                    <a href="<?php echo URLROOT . "/statistics/summary/0/1/999" ?>" class="ma-manga">كشف
-                                        العملات العربية والاجنبية</a>
-                                    <a href="<?php echo URLROOT . "/statistics/summary/1/1/2" ?>" class="ma-manga">كشف
-                                        تخصيص الدولار </a>
-                                    <a href="<?php echo URLROOT . "/statistics/summary/1/1/1" ?>" class="ma-manga">كشف
-                                        تخصيص الدينار </a>
-                                    <a href="<?php echo URLROOT . "/statistics/summary/1/1" ?>" class="ma-manga">كشف
-                                        تخصيص العملات العربية والاجنبية</a>
-                                    <a href="<?php echo URLROOT . "/statistics/summary/0/2" ?>" class="ma-manga">كشف
-                                        الذهب والفضة</a>
-                                    <a href="<?php echo URLROOT . "/statistics/summary/1/2" ?>" class="ma-manga">كشف
-                                        تخصيص الذهب </a>
-                                    <a href="<?php echo URLROOT . "/statistics/summary/1/4" ?>" class="ma-manga">كشف
-                                        الانعام</a>
-
+                                    <a href="<?php echo URLROOT . "/detections" ?>" class="ma-manga">عرض الكشوفات</a>
+                                    <a href="<?php echo URLROOT . "/detections/detect" ?>" class="ma-manga">اضافة منتسب لكشف</a>
+                                    <a href="<?php echo URLROOT . "/detections/add" ?>" class="ma-manga">اضافة كشف</a>
                                 </div>
 
                             </ul>
@@ -254,7 +156,7 @@
 
         <a href="<?php echo URLROOT . "/main/index" ?>">
             <div class="wer2" style="display: inline-block;"><i
-                        style="color:#fff; padding: 11px 10px; margin-left: 5px; background-color: #018360; border-radius:50px "
+                        style="color:#fff; padding: 11px 10px; margin-left: 5px; background-color: #E93C3C; border-radius:50px "
                         class="fas fa-home-lg-alt"></i></div>
         </a>
     </div>

@@ -87,7 +87,7 @@ button {
 }
 
 .mjk {
-    background-color: #007F60 !important;
+    background-color: #a39e94 !important;
     color: #fff !important;
 }
 
@@ -97,7 +97,7 @@ button {
 
 body {
 
-    background-color: #F5F5F5 !important;
+    background-color: #F0EEEA !important;
 
     font-family: Bahij !important;
 }
@@ -148,7 +148,7 @@ td {
 .gh {
     margin-bottom: 20px;
     margin-top: 20px;
-    color: #007F60;
+    color: black;
     font-weight: 500;
 }
 
@@ -170,6 +170,15 @@ td {
 
 .rowone {
     width: 88px;
+    padding: 10px 0px;
+    color: #007F60;
+    font-size: 15px;
+    vertical-align: top;
+
+}
+
+.rowone2 {
+    width: 150px;
     padding: 10px 0px;
     color: #007F60;
     font-size: 15px;
@@ -200,7 +209,7 @@ td {
     position: absolute;
     top: 8px;
     right: 11px;
-    background-color: #018360;
+    background-color: #E93C3C;
     padding: 9px;
     border-radius: 40px;
     color: #fff;
@@ -307,7 +316,6 @@ tr:last-child td:first-child {
 }
 
 .ma-alltable {
-    background-color: #fff;
     position: relative;
     width: 95%;
     background-color: white;
@@ -316,16 +324,19 @@ tr:last-child td:first-child {
     padding: 0px 0px 21px;
     margin: auto;
 }
-.ma-alltable .table-responsive{
+
+.ma-alltable .table-responsive {
     overflow-x: inherit;
 }
+
 .ma-alltable div.dataTables_wrapper div.dataTables_info {
     margin-right: 17px;
 }
 
-.ma-alltable div.dataTables_wrapper div.dataTables_length label{
+.ma-alltable div.dataTables_wrapper div.dataTables_length label {
     margin-right: 17px;
 }
+
 .maopo {
     margin: 30px 22px 30px 0px;
     display: inline-block;
@@ -340,26 +351,30 @@ th {
 }
 
 .allp {
-    background-color: #F5F5F5;
+    background-color: #F0EEEA;
     padding: 40px;
 }
 
 .MA-vistitem.manag {
     width: 98%;
 }
-.MA-vistitem .btn1:hover{
+
+.MA-vistitem .btn1:hover {
     background-color: #007F60;
     color: #fff;
 }
-.MA-vistitem .btn2:hover{
+
+.MA-vistitem .btn2:hover {
     background-color: #007F60;
     color: #fff;
 }
-.MA-vistitem .btn3:hover{
+
+.MA-vistitem .btn3:hover {
     background-color: #007F60;
     color: #fff;
 }
-.MA-vistitem .btn4:hover{
+
+.MA-vistitem .btn4:hover {
     background-color: #007F60;
     color: #fff;
 }
@@ -581,7 +596,7 @@ input::-webkit-input-placeholder {
     display: inline-block;
     font-size: 29px;
     margin-left: 12px;
-    color: #7dd05d;
+    color: #e93c3c;
 }
 
 .ma-spanprint2 span {
@@ -697,7 +712,7 @@ input::-webkit-input-placeholder {
     left: 0;
     width: 100%;
     height: 0.1em;
-    background-color: #018360;
+    background-color: #E93C3C;
     opacity: 0;
     transition: opacity 300ms, transform 300ms;
 }
@@ -710,7 +725,7 @@ input::-webkit-input-placeholder {
     left: 0;
     width: 100%;
     height: 0.1em;
-    background-color: #018360;
+    background-color: #E93C3C;
     opacity: 0;
     transition: opacity 300ms, transform 300ms;
 }
@@ -731,23 +746,28 @@ input::-webkit-input-placeholder {
     display: inline-block;
     margin: 10px 17px 20px 10px;
 }
-.ma-alltable .select2-container{
-    width: 110px!important;
+
+.ma-alltable .select2-container {
+    width: 110px !important;
 }
+
 .firstpage {
     margin-top: 12px !important;
 }
-.sa .ty:hover{
-    color: #fff!important;
+
+.sa .ty:hover {
+    color: #fff !important;
 }
-.selection .select2-selection{
+
+.selection .select2-selection {
 
     border-radius: 10px !important;
 }
+
 .ma-uyt {
     display: inline-block;
     font-size: 13px;
-    background-color: #018360;
+    background-color: #E93C3C;
     padding: 6px 15px;
     border-radius: 30px;
 
@@ -765,7 +785,7 @@ input::-webkit-input-placeholder {
 .ma-inma {
     margin-left: 30px;
     font-size: 14px;
-    color: #018360 !important;
+    color: #E93C3C !important;
     font-weight: 200;
 }
 
@@ -1142,7 +1162,7 @@ input::-webkit-input-placeholder {
 .outer {
     height: 40px;
     width: 40px;
-    background-color: #018360;
+    background-color: #E93C3C;
     transition: all .5s;
     border-radius: 30px;
     position: absolute;
@@ -1221,7 +1241,7 @@ input::-webkit-input-placeholder {
 }
 
 .ma-header span {
-    color: #007F60 !important;
+    color: black !important;
     font-size: 20px;
     font-family: Bahij;
     margin: 15px 0px;
@@ -1389,7 +1409,7 @@ input::-webkit-input-placeholder {
 .qw-ty {
     vertical-align: middle;
     display: inline-flex;
-    color: #696969;
+    color: black;
 }
 
 .ma-manga {
@@ -1880,7 +1900,7 @@ input[type="checkbox"]:focus {
         width: 100px !important;
         display: block !important;
         position: absolute;
-        top:20px;
+        top: 20px;
     }
 
     body {

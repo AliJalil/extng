@@ -46,7 +46,7 @@
             'autoWidth': false,
 
             'ajax': {
-                'url': '<?php echo URLROOT . "/main/details/1" ?>',
+                'url': '<?php echo URLROOT . "/main/details" ?>',
                 "type": 'POST',
                 "data": function (data) {},
             },
@@ -65,12 +65,12 @@
                         var txt = "";
                         if (row['state'] == 2) {
                             state = 'تالف';
-                            txt += '                        <br>' +
-                                '                       <div style="margin-top: 5px">' +
-                                '                            <button style="transition: all 0.3s; background: #EDEDED;color: #007f60;" id="infoItem-' + row['ignoreBy'] + '" data-toggle="tooltip" title="اتلفه المستخدم"' +
-                                '                                class="btn btn-sm">' +
-                                '                            <i class="fas fa-info-square"></i>' +
-                                '                        </button>';
+                        //     txt += '                        <br>' +
+                        //         '                       <div style="margin-top: 5px">' +
+                        //         '                            <button style="transition: all 0.3s; background: #EDEDED;color: #007f60;" id="infoItem-' + row['ignoreBy'] + '" data-toggle="tooltip" title="اتلفه المستخدم"' +
+                        //         '                                class="btn btn-sm">' +
+                        //         '                            <i class="fas fa-info-square"></i>' +
+                        //         '                        </button>';
                         }
                         return '<a class="state" id="state" data-name="state"  data-type="select" data-emptytext="فارغ" data-pk=' + row['exId'] + '>' + state + '</a>' +
                             txt +
@@ -81,9 +81,15 @@
                     data: 'exId',
                     render: function (data, type, row) {
                         return '<div style="margin-top: 5px">' +
-                            '                             <a target="_blank" href="<?php echo URLROOT . "/main/print/"; ?>' + row['exId'] + '"style="transition: all 0.3s; background: #EDEDED;color: red;" data-toggle="tooltip" title="معاينة الوصل"' +
+                            '                             <a target="_blank" href="<?php
+
+                                echo URLROOT . "/detections/details/0/"; ?>' + row['exId'] + '/0"style="transition: all 0.3s; background: #EDEDED;color: red;" data-toggle="tooltip" title="معاينة الكشف"' +
                             '                                    class="btn  btn-sm">' +
                             '                                <i class="fas fa-eye"></i>' +
+                            '                            </a>' +
+                            '                             <a href="<?php echo URLROOT . "/detections/addDetectionInfo/"; ?>' + row['exId'] + '"style="transition: all 0.3s; background: #EDEDED;color: red;" data-toggle="tooltip" title="اضافة كشف للمطفئة"' +
+                            '                                    class="btn  btn-sm">' +
+                            '                                <i class="fas fa-sensor-fire"></i>' +
                             '                            </a>' +
                             <?php if (checkPermission($data['permissions'], 'DeleteGift'))  : ?>
                             '                            <button style="transition: all 0.3s; background: #EDEDED;color: red;" id="delete-item-' + data + '" data-toggle="tooltip" title="حذف السجل الحالي"' +
@@ -146,7 +152,7 @@
                 {
                     targets: "exNotes_th",
                     render: function (data, type, row) {
-                        return '<a class="exNotes" id="exNotes" data-name="exNotes"  data-type="text" data-pk=' + row['exId'] + '>' + data + '</a>'
+                        return '<a class="notes" id="notes" data-name="notes"  data-type="text" data-pk=' + row['exId'] + '>' + data + '</a>'
                     }
                 },
             ],
@@ -157,19 +163,16 @@
             }
         } )
         emTable.on( 'draw', function () {
-            <?php if (checkPermission($data['permissions'], 'StateChange'))  : ?>
-            selectFromSource( ".state", "<?php echo URLROOT . "/main/edit";?>", states );
-            <?php endif;?>
-
 
             <?php if (checkPermission($data['permissions'], 'EditGift')):?>
+            selectFromSource( ".state", "<?php echo URLROOT . "/main/edit";?>", states );
             selectFromSource( ".exType", "<?php echo URLROOT . "/main/edit";?>", types );
             selectFromSource( ".exSize", "<?php echo URLROOT . "/main/edit";?>", sizes );
             make_editable_x( '.exSeq', "<?php echo URLROOT . "/main/edit";?>" );
             make_editable_x( '.exNo', "<?php echo URLROOT . "/main/edit";?>" );
             make_editable_x( '.exName', "<?php echo URLROOT . "/main/edit";?>" );
             make_editable_x( '.exPlace', "<?php echo URLROOT . "/main/edit";?>" );
-            make_editable_x( '.exNotes', "<?php echo URLROOT . "/main/edit";?>" );
+            make_editable_x( '.notes', "<?php echo URLROOT . "/main/edit";?>" );
 
             <?php endif;?>
         } )

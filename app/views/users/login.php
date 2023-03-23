@@ -7,12 +7,16 @@
     <title><?php echo SITENAME ?> </title>
     <script type="text/javascript"
             src="<?php echo URLROOT . "/public/js/DataTables/jQuery-1.12.4/jquery-1.12.4.min.js" ?>"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="<?php echo URLROOT . "/public/js/sweetalert2.min.js" ?>"></script>
+    <link rel="stylesheet" href="<?php echo URLROOT . "/public/css/sweetalert2.min.css" ?>" crossorigin="anonymous">
+
     <script src="https://kit.fontawesome.com/28e600a1b8.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="<?php echo URLROOT . "/public/css/style.css" ?>" crossorigin="anonymous">
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="<?php echo URLROOT . "/public/vendor/bootstrap@5.0.2/css/bootstrap.min.css" ?>"
+          crossorigin="anonymous">
+    <script type="text/javascript"
+            src="<?php echo URLROOT . "/public/vendor/bootstrap@5.0.2/js/bootstrap.bundle.min.js" ?>"></script>
+
     <link rel="shortcut icon" type="image/x-icon" href="<?php echo URLROOT . "/public/images/statics/favicon.ico"; ?>">
 
     <style>
@@ -30,20 +34,20 @@
      style="background-image: url(<?php echo URLROOT . "/public/images/statics/login-bg111.jpg" ?>);">
     <div class="ma-opas">
         <form method="post" id="logintype" enctype="multipart/form-data">
-            <div class="ret"><i class="fas fa-hand-receiving kl"></i>  <h4 class="ruy er">نظام الهدايا والنذور</h4>
+            <div class="ret"><i class="fas fa-fire-extinguisher kl" ></i>  <h4 class="ruy er">كشف المطافئ</h4>
             </div>
             <h2 class="ruy">مرحبا بك </h2>
             <div class="xcwe">
                 <label class="uio">الاسم المستخدم</label>
                 <i class="fa fa-user icon"></i>
                 <input placeholder="الاسم المستخدم" id="username" class="row2" type="text" name="un"
-                       required="true" </i>
+                       required=</i>
             </div>
             <div class="xcwe fg">
 
                 <label class="uio">كلمة السر</label>
                 <i class="fas fa-eye" onclick="myFunction()"></i>
-                <input id="myInput" placeholder="كلمة المرور " class="row2" type="password" name="pw" required="true">
+                <input id="myInput" placeholder="كلمة المرور " class="row2" type="password" name="pw" required>
             </div>
             <input class="row2 hj" type="submit"
                    name="save" value="تسجيل الدخول">

@@ -221,8 +221,8 @@ var checkStates = [
     {value: 1, text: 'دققت'},
     {value: 2, text: 'لم تدقق'},];
 
-var states = [{value: 1, text: 'صالح'},
-    {value: 2, text: 'تالف'},];
+var states = [{value: 1, text: 'نعم'},
+    {value: 2, text: 'لا'},];
 
 var activeStates = [{value: 1, text: 'فعال'},
     {value: 0, text: 'غير فعال'},];

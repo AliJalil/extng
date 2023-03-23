@@ -1,7 +1,7 @@
 
 <!-- Javascript -->
 <link rel="stylesheet" href="<?php echo URLROOT . "/public/css/animalprint.css" ?>" crossorigin="anonymous">
-<div class="ma-footer3" style="height: 30px;width: 100%;background: #018360;color: #ffffff; position: fixed;
+<div class="ma-footer3" style="height: 30px;width: 100%;background: #E93C3C;color: #ffffff; position: fixed;
      bottom: 0px;
      right: 0px;
 left: 0px;text-align: center;">

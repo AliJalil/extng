@@ -120,10 +120,8 @@
         let types = <?php echo $data['types']; ?>;
         let sizes = <?php echo $data['sizes']; ?>;
 
-
         addManage( 'addSize', 1 );
         addManage( 'addType', 2 );
-
 
         function addManage(formId, manageId) {
 
@@ -160,7 +158,6 @@
                 }
             );
         }
-
 
         var sizeTable = $( '#sizeTable' ).DataTable( {
             "processing": true,
@@ -210,7 +207,6 @@
             selectFromSource( ".isActive", "<?php echo URLROOT . "/manages/edit/1";?>", activeStates );
             <?php endif;?>
         } )
-
 
         var typesTable = $( '#typesTable' ).DataTable( {
             "processing": true,
@@ -274,8 +270,6 @@
             } );
         }
 
-
-
         $( document ).on( 'click', '[id^="delete-item-sp-"]', function () {
             let button = $( this );
             let id = this.id.split( '-' ).pop();
@@ -287,7 +281,6 @@
             let id = this.id.split( '-' ).pop();
             deleteFunction( "حذف عنصر", "هل انت متأكد من حذف العنصر المحدد؟", "<?php echo URLROOT . "/manages/edit/2";?>", id, typesTable, button );
         } );
-
 
         $( document ).on( 'click', '[id^="delete-item-cash-"]', function () {
             let button = $( this );
@@ -312,8 +305,7 @@
     $( "#close-btn-sp, .bg-overlay-sp" ).click( function () {
         $( "#add-size-model" ).removeClass( 'model-open' );
     } );
-
-
+    
     $( "#add-cash-btn" ).on( 'click', function () {
         $( "#add-cash-model" ).addClass( 'model-open' );
     } );

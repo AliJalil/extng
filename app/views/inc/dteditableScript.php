@@ -21,7 +21,7 @@
 
     .dataTables_paginate a {
         padding: 3px 10px !important;
-        background:  #018360 !important;
+        background:  #E93C3C !important;
         border: 1px solid #c0a16b !important;
         border-radius: 5px;
         margin: 0.5px;

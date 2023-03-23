@@ -142,9 +142,9 @@
             <table id="usersTable" class=" table table-striped table-bordered">
                 <thead>
                 <tr class="mjk">
-                    <th class="name_th" >الاسم</th>
+                    <th class="name_th">الاسم</th>
                     <th class="user_name_th">الاسم المستخدم</th>
-                    <th>صورة التوقيع</th>
+                    <th>صورة المنتسب</th>
                     <th class="state_th">الحالة</th>
                     <th>الاجراءات</th>
                 </tr>
@@ -212,7 +212,12 @@
                             '                            <button style="transition: all 0.3s;color: #4c4e56;" id="change-password-' + data + '" data-toggle="tooltip" title="تعديل كلمة المرور"' +
                             '                                    class="btn  btn-sm">' +
                             '                                <i class="fas fa-key"></i><span style="margin-right: 12px;"> تغيير كلمة المرور</span>' +
-                            '                            </button> <?php endif; ?>' +
+                            '                            </button>' +
+                            '                       ' +
+                            '                            <a href="<?php echo URLROOT . "/detections/details/0/0/"; ?>' + data + '" style="transition: all 0.3s;color: #4c4e56;"  data-toggle="tooltip" title="كشوفات المنتسب"' +
+                            '                                    class="btn  btn-sm">' +
+                            '                                <i class="fas fa-eye"></i><span style="margin-right: 12px;"> كشوفات المنتسب</span>' +
+                            '                            </a> <?php endif; ?>' +
                             '                       ' +
                             '                    </div>';
                     }
@@ -261,7 +266,7 @@
             var id = this.id.split( '-' ).pop();
             $( "#changePermissionsModel" ).addClass( 'model-open' );
             $( 'input[name="uId"]' ).val( id );
-            bindDataChangePermissions(id)
+            bindDataChangePermissions( id )
 
         } );
 
@@ -313,7 +318,7 @@
 
             $( "#userPermissions" ).html( permissionHtml );
             var formData = new FormData();
-            formData.append('userId', userId);
+            formData.append( 'userId', userId );
             $.ajax( {
                 url: '<?php echo URLROOT . "/users/getPermissionsByUserId/";?>',
                 method: "post",
@@ -323,7 +328,7 @@
                 success: function (response) {
                     const givenPermissions = $.parseJSON( response );
                     givenPermissions.forEach( (item) => {
-                        $( '#userPermissions input[id='+item.pId+']' ).prop( "checked", true );
+                        $( '#userPermissions input[id=' + item.pId + ']' ).prop( "checked", true );
                     } );
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -331,14 +336,6 @@
                     alert( "خظأ: " + errorThrown );
                 }
             } );
-
-
-
-
-
-
-
-
 
 
         }

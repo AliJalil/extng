@@ -68,8 +68,7 @@
                     <table id="detailsTable"
                            class="table table-striped table-bordered jkj">
                         <thead>
-                        <tr class="golddetedction" style="      background-color: #054739;
-                color: #fff;  border-radius: 12px;">
+                        <tr class="golddetedction" style=" background-color: #054739;  color: #fff;  border-radius: 12px;">
                             <th style="    border-top-right-radius: 12px;" class="serial_th">ت</th>
                             <th class="sp_th">التخصيص</th>
                             <th class="w9" id="w9">عيار 9</th>
@@ -181,6 +180,7 @@
             let rowC = 0;
             let text = "";
             var totalGold = totalSilver = 0
+
             ids.forEach( item => {
 
                 var w9 = w12 = w14 = w17 = w18 = w21 = w22 = w24 = wGold = wSilver = 0

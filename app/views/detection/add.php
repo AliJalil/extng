@@ -5,41 +5,38 @@
 <div class="MA-vistitem">
 
     <div class="ma-left1">
-        <form class="nameFoo3 so" method="post" id="addAnimal" name="form1">
+        <form class="nameFoo2 so" method="post" name="addItem" id="addItem">
             <div class="ma-header">
                 <div class="ma-back"><i class="fas fa-home firstpage"></i></div>
-                <span>اضافة تبرع</span></div>
-            <table class="qw" width="25%" border="0">
+                <span>اضافة كشف</span></div>
+            <table class="sd" width="25%" border="0">
                 <tr>
-                    <td class="rowone">اسم المتبرع</td>
-                    <td><input placeholder="اسم المتبرع" type="text" id="dName" name="dName" required></td>
+                    <td class="rowone">اسم الكشف</td>
+                    <td><input placeholder="اسم الكشف" type="text" id="dName" name="dName" required></td>
                 </tr>
                 <tr>
-                    <td class="rowone">النوع</td>
-                    <td>
-                        <select class="ma-forplace" type="text" id="animalTId" name="tId"
-                                required>
-                            <option value="">اختر النوع</option>
-                        </select>
-                    </td>
+                    <td class="rowone">تأريخ بدأ الكشف</td>
+                    <td><input type="date" id="startIn" name="startIn" value="<?= date('Y-m-01') ?>"></td>
+                </tr>
+                <tr>
+                    <td class="rowone">تأريخ انتهاء الكشف</td>
+                    <td><input type="date" id="endAt" name="endAt" value="<?= date('Y-m-d') ?>"></td>
                 </tr>
 
                 <tr>
-                    <td class="rowone">العدد</td>
-                    <td><input onkeypress="return isNumberKey(this, event);" placeholder=" العدد" type="text"
-                               id="amount" name="amount" required>
-
-                    </td>
+                    <td class="rowone">الملاحظات</td>
+                    <td><input placeholder="الملاحظات" type="text" id="notes" name="notes" required></td>
                 </tr>
+
             </table>
             <div class="ma-tu">
+
                 <?php if (checkPermission($data['permissions'], 'AddGift')): ?>
                     <input id="submit" class="ma-add" type="submit" name="Submit" value="حفظ">
                 <?php endif; ?>
                 <?php if ((checkPermission($data['permissions'], 'ViewTables')) ||
-                    (checkPermission($data['permissions'], 'EditGift')) ||
-                    (checkPermission($data['permissions'], 'Checker'))): ?>
-                    <a href="<?php echo URLROOT . "/main/details/4" ?>"><input class="ma-add two" value="جدول الانعام">
+                    (checkPermission($data['permissions'], 'EditGift'))): ?>
+                    <a href="<?php echo URLROOT . "/main/details/3" ?>"><input class="ma-add two" value="جدول الكشوفات">
                     </a>
                 <?php endif; ?>
             </div>
@@ -51,29 +48,22 @@
     $( document ).ready( function () {
 
         $( ".ma-back" ).click( function () {
-            window.location='<?php echo URLROOT . "/main" ?>';
+            window.location = '<?php echo URLROOT . "/main" ?>';
         } );
-
         $( ".ma-forplace" ).select2();
         <?php if (checkPermission($data['permissions'], 'AddGift')): ?>
-
-        let types = <?php echo $data['types']; ?>;
-        const animalTypes = types.filter( type => type.dType == 4 )
-        populateSelectFromDs( "animalTId", animalTypes );
-
-        function addGift(formId, sId, printPage) {
+        function addDetection(formId) {
             $( "#" + formId ).submit( function (event) {
                     const form = $( "#" + formId );
                     var params = form.serializeArray();
                     var formData = new FormData();
-                    formData.append( "sId", sId );
                     $( params ).each( function (index, element) {
                         formData.append( element.name, element.value );
                     } );
-                $( "#submit" ).val( "جار الحفظ..." );
-                $( "#submit" ).attr( "disabled", true );
+                    $( "#submit" ).val( "جار الحفظ..." );
+                    $( "#submit" ).attr( "disabled", true );
                     $.ajax( {
-                        url: '<?php echo URLROOT . "/main/index";?>',
+                        url: '<?php echo URLROOT . "/detections/add";?>',
                         method: "post",
                         data: formData,
                         contentType: false,
@@ -86,7 +76,6 @@
                                         $( "#" + formId ).trigger( "reset" );
                                         $( "#submit" ).attr( "disabled", false );
                                         $( "#submit" ).val( "حفظ" );
-                                        window.open('<?php echo URLROOT . "/main/";?>' + printPage + "/" + json + "/y", "_blank");
                                     }
                                 )
                             }
@@ -101,7 +90,7 @@
             );
         }
 
-        addGift( 'addAnimal', 0, 'animal' )
+        addDetection( 'addItem', 0, 'item' )
         <?php endif;?>
     } );
 </script>

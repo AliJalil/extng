@@ -5,47 +5,83 @@
 
 <div class="MA-vistitem">
 
-
+    <?php $currentDetection = $data['currentDetection'];
+    $currentDetectionId = encrypt_decrypt($currentDetection->dId);
+    ?>
     <div class="ma-left">
-        <form id="addExtinguisher" class="nameFoo so" method="post" name="addExtinguisher">
+        <form id="addDetectionInfo" class="nameFoo so" method="post" name="addDetectionInfo">
             <div class="ma-header">
                 <div class="ma-back"><i class="fas fa-home firstpage"></i></div>
-                <span>اضافة معلومات مطفئة</span></div>
+                <span>اضافة معلومات كشف عن مطفأة</span>
+                <span><?php echo $currentDetection->dName ?></span>
+            </div>
+
+
             <table class="qw" border="0">
 
                 <tr>
-                    <td class="rowone">التسلسل</td>
-                    <td><input placeholder="التسلسل" type="number" name="exSeq" id="exSeq" required></td>
-                </tr>
-                <tr>
-                    <td class="rowone">الرقم</td>
-                    <td><input placeholder="الرقم" type="number" name="exNo" id="exNo" required></td>
-                </tr>
-
-                <tr>
-                    <td class="rowone">النوع</td>
-                    <td>
-                        <select class="ma-forplace" name="exType" id="exType"
-                                required>
-                            <option value="">اختر النوع</option>
-                        </select>
+                    <td class="rowone2">هل المطفأة موجودة</td>
+                    <td style="justify-content: center;display: flex;">
+                        <input type="radio" name="isThere" id="yes" value="1" required>
+                        <label for="yes">نعم </label>
+                        <input type="radio" name="isThere" id="no" value="2">
+                        <label for="no"> لا </label>
                     </td>
                 </tr>
 
                 <tr>
-                    <td class="rowone">الحجم</td>
-                    <td>
-                        <select class="ma-forplace" name="exSize" id="exSize"
-                                required>
-                            <option value="">اختر الحجم</option>
-                        </select>
+                    <td class="rowone2">هل حالة البسمار جيدة؟</td>
+                    <td style="justify-content: center;display: flex;">
+                        <input type="radio" name="lockIsGood" id="lyes" value="1" required>
+                        <label for="lyes">نعم</label>
+                        <input type="radio" name="lockIsGood" id="lno" value="2">
+                        <label for="lno">لا</label>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="rowone2">هل حالة العداد جيدة؟</td>
+                    <td style="justify-content: center;display: flex;">
+                        <input type="radio" name="gageIsGood" id="gyes" value="1" required>
+                        <label for="gyes">نعم</label>
+                        <input type="radio" name="gageIsGood" id="gno" value="2">
+                        <label for="gno">لا</label>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="rowone2">هل حالة العداد جيدة؟</td>
+                    <td style="justify-content: center;display: flex;">
+                        <input type="radio" name="jetIsGood" id="jyes" value="1" required>
+                        <label for="jyes">نعم</label>
+                        <input type="radio" name="jetIsGood" id="jno" value="2">
+                        <label for="jno">لا</label>
                     </td>
                 </tr>
 
                 <tr>
-                    <td class="rowone">المكان</td>
-                    <td><input placeholder="المكان" type="text" name="exPlace" id="exPlace" required></td>
+                    <td class="rowone2">هل حالة المقبض جيدة؟</td>
+                    <td style="justify-content: center;display: flex;">
+                        <input type="radio" name="handleIsGood" id="hyes" value="1" required>
+                        <label for="hyes">نعم</label>
+                        <input type="radio" name="handleIsGood" id="hno" value="2">
+                        <label for="hno">لا</label>
+                    </td>
                 </tr>
+
+
+                <tr>
+                    <td class="rowone2">هل المطفئة مستخدمة؟</td>
+                    <td style="justify-content: center;display: flex;">
+                        <input type="radio" name="isUsed" id="iyes" value="1" required>
+                        <label for="iyes">نعم</label>
+                        <input type="radio" name="isUsed" id="ino" value="2">
+                        <label for="ino">لا</label>
+                    </td>
+                </tr>
+
 
                 <tr>
                     <td class="rowone">الملاحظات</td>
@@ -77,18 +113,9 @@
             window.location = '<?php echo URLROOT . "/main" ?>';
         } );
 
-
-        $( ".ma-forplace" ).select2();
-
         <?php if (checkPermission($data['permissions'], 'AddGift')): ?>
 
-        let sizes = <?php echo $data['sizes']; ?>;
-        populateSelectFromDs( "exSize", sizes );
-
-        let types = <?php echo $data['types']; ?>;
-        populateSelectFromDs( "exType", types );
-
-        function addExtinguisher(formId) {
+        function addDetectionInfo(formId) {
             $( "#" + formId ).submit( function (event) {
                     const form = $( "#" + formId );
                     var params = form.serializeArray();
@@ -97,18 +124,22 @@
                     $( params ).each( function (index, element) {
                         formData.append( element.name, element.value );
                     } );
+                    const pathValues = location.pathname.split( "/" );
+                    const lastComponents = pathValues.slice( -1 ).join( "/" );
 
                     //disabling Submit Button so that user cannot press Submit Multiple times
                     $( "#submit" ).val( "جار الحفظ..." );
                     $( "#submit" ).attr( "disabled", true );
                     $.ajax( {
-                        url: '<?php echo URLROOT . "/main/index";?>',
+                        url: '<?php echo URLROOT . "/Detections/addDetectionInfo/{$currentDetectionId}/";?>' + lastComponents,
                         method: "post",
                         data: formData,
                         contentType: false,
                         processData: false,
                         success: function (response) {
                             const json = $.parseJSON( response );
+                            console.log( json );
+
                             if (json != "err") {
                                 showAlertWithCompletion( "success", "تمت الاضافة بنجاح",
                                     () => {
@@ -129,7 +160,7 @@
             );
         }
 
-        addExtinguisher( 'addExtinguisher' )
+        addDetectionInfo( 'addDetectionInfo' )
 
         <?php endif;?>
     } );

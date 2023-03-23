@@ -32,8 +32,11 @@ class Extinguisher
         return $this->db->resultset();
     }
 
-    public function getExtinguisher($row, $rowperpage, $data, $dTypeId = 0, $isGOldStatics = 0): array
+
+    public function getExtinguisher($row, $rowperpage, $data, $userId): array
     {
+        $conditions = array();
+
         $query = "select extinguishers.exId, 
         extinguishers.exSeq,
         extinguishers.exNo,
@@ -46,10 +49,15 @@ class Extinguisher
      ,extinguishers.ignoreBy ";
         $innerQuery = " from extinguishers inner join types on extinguishers.exType = types.tId
          inner join sizes on extinguishers.exSize =sizes.sId
-         inner join users on extinguishers.createdBy =users.userId
-         where types.isActive =1 and types.isDeleted =0 and extinguishers.isActive =1 and extinguishers.isDeleted =0 and sizes.isDeleted = 0  ";
+         inner join users on extinguishers.createdBy =users.userId";
+        if ($userId != 0) {
+            $innerQuery = $innerQuery . " inner join detectionEmps on extinguishers.exId =detectionEmps.exId ";
+            $conditions[] = "detectionEmps.userId = '{$userId}'";
+        }
 
-        $conditions = array();
+        $innerQuery = $innerQuery . " where types.isActive =1 and types.isDeleted =0 and extinguishers.isActive =1 and extinguishers.isDeleted =0 and sizes.isDeleted = 0  ";
+
+
         if (!empty($data['exName'])) {
             $conditions[] = "extinguishers.exName LIKE '%{$data['exName']}%'";
         }
@@ -95,14 +103,13 @@ class Extinguisher
 
         //get filtered data
         $sql = $sql . " limit " . $row . " , " . $rowperpage;
-
         $this->db->query($query . $sql);
         $result[] = $this->db->resultset();
         return $result;
     }
 
 
-    public function getExtinguisherCount($dTypeId = 0, $isGOldStatics = 0)
+    public function getExtinguisherCount($userId)
     {
         $selectStm = "SELECT count(extinguishers.exId) as 'count' FROM extinguishers
                                              inner join types on extinguishers.exType = types.tId
@@ -206,7 +213,6 @@ class Extinguisher
 
     public function addExt($data)
     {
-
 
 
         $this->db->query('INSERT INTO extinguishers (exSeq, exNo, exType, exSize, exPlace,notes,createdBy) 

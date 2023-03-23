@@ -14,6 +14,7 @@ class Main extends Controller
         $this->typeModel = $this->model('Type');
         $this->specificationModel = $this->model('Specification');
         $this->sizeModel = $this->model('Size');
+        $this->detectionEmps = $this->model('DetectionEmps');
         $this->permissionModel = $this->model('Permission');
         $this->permissionsArray = array_column($this->permissionModel->getPermissionsByUserId($_SESSION['extUserId']), PERMISSION_COLUMN);
 
@@ -63,24 +64,33 @@ class Main extends Controller
             if ($gTypeId == 1) {
                 $this->view('extng/add', $data);
             } else {
-                $this->view('main/index', $data);
+                $this->view('extng/details', $data);
             }
 
         }
     }
 
-    public function details($gTypeId, $isGOldStatics = 0)
+    public function details()
     {
         if (!isLoggedIn()) {
             redirect('users/login');
             die();
         }
+
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            if (checkPermission($this->permissionsArray, 'StatementViewUser')) {
+                $userId = $_SESSION['extUserId'];
+            }
+            elseif (checkPermission($this->permissionsArray, 'StatementView')) {
+                $userId = 0;
+            }
 
             $draw = $_POST['draw'];
             $row = $_POST['start'];
             $rowperpage = $_POST['length']; // Rows display per page
-            $iTotalRecords = $this->extingModel->getExtinguisherCount($gTypeId, $isGOldStatics);
+            $iTotalRecords = $this->extingModel->getExtinguisherCount($userId);
 
             if ($rowperpage == -1) {
                 $rowperpage = $iTotalRecords;
@@ -94,10 +104,10 @@ class Main extends Controller
             }
 
 
-            $result = $this->extingModel->getExtinguisher($row, $rowperpage, $newArr);
-//            foreach ($result[1] as $key => $item) {
-//                $result[1][$key]->gGId = encrypt_decrypt($item->gId);
-//            }
+            $result = $this->extingModel->getExtinguisher($row, $rowperpage, $newArr, $userId);
+            foreach ($result[1] as $key => $item) {
+                $result[1][$key]->exId = encrypt_decrypt($item->exId);
+            }
 
             $response = array(
                 "draw" => intval($draw),
@@ -128,11 +138,7 @@ class Main extends Controller
             redirect('users/login');
             die();
         }
-        if (!checkPermission($this->permissionsArray, 'EditGift')
-            && !checkPermission($this->permissionsArray, 'SubEdit')
-            && !checkPermission($this->permissionsArray, 'GoldExpert')
-            && !checkPermission($this->permissionsArray, 'Checker')
-            && !checkPermission($this->permissionsArray, 'StateChange')) {
+        if (!checkPermission($this->permissionsArray, 'EditGift')) {
             redirect('main/index');
         }
 
@@ -149,7 +155,7 @@ class Main extends Controller
                     $data = [
                         'name' => trim($params["name"]),
                         'value' => trim($params["value"]),
-                        'pk' => trim($params["pk"])
+                        'pk' => encrypt_decrypt($params["pk"], 'decrypt')
                     ];
 
                     if (trim($params["name"]) != 'isActive' && trim($params["name"]) != 'isDeleted' && trim($params["name"]) != 'state') {
@@ -317,4 +323,6 @@ class Main extends Controller
         }
         $this->view('charts/index', []);
     }
+
+
 }
