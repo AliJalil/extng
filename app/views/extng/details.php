@@ -1,6 +1,10 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 <?php require APPROOT . '/views/inc/dteditableScript.php'; ?>
 <script src="<?php echo URLROOT . "/public/js/dtJs.js"; ?>"></script>
+<script src="<?php echo URLROOT . "/public/vendor/qrcode.min.js"?>"></script>
+<script src="<?php echo URLROOT . "/public/vendor/lazysizes.min.js"?>"></script>
+
+<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 
 <div class="ma-alltable">
 
@@ -97,6 +101,10 @@
                             '                                <i class="fas fa-trash"></i>' +
                             '                            </button>' +
                             <?php endif;?>
+                            '                            <button style="transition: all 0.3s; background: #EDEDED;color: red;" id="QR-item-' + data + '" data-toggle="tooltip" title="طباعة QR"' +
+                            '                                    class="btn  btn-sm">' +
+                            '                                <i class="fas fa-qrcode" style="color: #717884;"></i>' +
+                            '                            </button>' +
                             '</div>' +
                             '                       ';
                     }
@@ -202,13 +210,22 @@
         $( '#min, #max' ).on( 'change', function () {
             emTable.draw();
         } );
+
         $( document ).on( 'click', '[id^="delete-item-"]', function () {
             var button = $( this );
             var id = this.id.split( '-' ).pop();
-
             deleteFunction( "حذف عنصر", "هل انت متأكد من حذف العنصر المحدد؟", "<?php echo URLROOT . "/main/edit";?>", id, emTable, button );
-
         } );
+
+
+        $( document ).on( 'click', '[id^="QR-item-"]', function () {
+            var button = $( this );
+
+            var id = this.id.split( '-' ).pop();
+            console.log(id);
+            itemInfoFunction( id);
+        } );
+
     } );
 
 

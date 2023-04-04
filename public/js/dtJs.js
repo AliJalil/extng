@@ -182,38 +182,6 @@ jQuery.fn.dataTable.Api.register( 'sum()', function ( ) {
     }, 0 );
 } );
 
-function itemInfoFunction(url ="")
-{
-    $.ajax( {
-        url:url,
-        method: "post",
-        contentType: false,
-        processData: false,
-        success: function (data) {
-            const json = $.parseJSON( data );
-            Swal.fire( {
-                title: "ابطل الوصل",
-                html: "<b>" + name + " </b>" +
-                    "<table id='pointsTable' style='border: none' class='table table-hover table-bordered table-striped table-resource-list table-databases' width='100%'" +
-                    "       cellspacing='10px' >" +
-                    "    <tr>" +
-                    "    </tr>" +
-                    "</table>",
-                confirmButtonText: "حسنا",
-                confirmButtonColor: "#007f60",
-            } )
 
-            if (json) {
-                var txt = "";
-                txt += "<tr><td>" + json.name + "</td></tr>";
-                if (txt != "") {
-                    $( "#pointsTable" ).append( txt ).removeClass( "hidden" );
-                }
-            }
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            showAlert( 'error', "خظأ: " + errorThrown );
-        }
-    } );
-}
+
 

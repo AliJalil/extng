@@ -36,11 +36,9 @@
             // const path = location.pathname.substring( location.pathname.lastIndexOf( '/' ) - 1 );
             const pathValues = location.pathname.split( "/" );
             const lastThreeComponents = pathValues.slice( -3 ).join( "/" );
-
             $.ajax( {
                     url: '<?php echo URLROOT . "/detections/details/";?>' + lastThreeComponents,
                     method: "post",
-
                     contentType: false,
                     processData: false,
                     success: function (data) {
@@ -67,7 +65,6 @@
 
                 let cardContent = `<a style="color: #A39E94 !important;margin: 3px;background: #E2E0DB;font-weight: bold" class="btn" data-bs-toggle="collapse" href="#collapseCard${rowC}" role="button" aria-expanded="false" aria-controls="collapseExample">${itemParent}</a>
                                    <div class="collapse" id="collapseCard${rowC}">`;
-
                 rowC +=1;
                 objs.forEach( item => {
                     cardContent += `

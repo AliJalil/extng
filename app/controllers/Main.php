@@ -324,5 +324,13 @@ class Main extends Controller
         $this->view('charts/index', []);
     }
 
+    public function qr()
+    {
+        $data = [
+            'permissions' => $this->permissionsArray
+        ];
+        $this->view('qr/index', $data);
+    }
+
 
 }
