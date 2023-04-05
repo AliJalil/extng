@@ -95,16 +95,17 @@
                             '                                    class="btn  btn-sm">' +
                             '                                <i class="fas fa-sensor-fire"></i>' +
                             '                            </a>' +
+
+                            '                            <button style="transition: all 0.3s; background: #EDEDED;color: red;" id="QR-item-' + data + '" data-toggle="tooltip" title="طباعة QR"' +
+                            '                                    class="btn  btn-sm">' +
+                            '                                <i class="fas fa-qrcode" style="color: #717884;"></i>' +
+                            '                            </button>' +
                             <?php if (checkPermission($data['permissions'], 'DeleteGift'))  : ?>
                             '                            <button style="transition: all 0.3s; background: #EDEDED;color: red;" id="delete-item-' + data + '" data-toggle="tooltip" title="حذف السجل الحالي"' +
                             '                                    class="btn  btn-sm">' +
                             '                                <i class="fas fa-trash"></i>' +
                             '                            </button>' +
                             <?php endif;?>
-                            '                            <button style="transition: all 0.3s; background: #EDEDED;color: red;" id="QR-item-' + data + '" data-toggle="tooltip" title="طباعة QR"' +
-                            '                                    class="btn  btn-sm">' +
-                            '                                <i class="fas fa-qrcode" style="color: #717884;"></i>' +
-                            '                            </button>' +
                             '</div>' +
                             '                       ';
                     }

@@ -5,7 +5,9 @@
 
 <div class="MA-vistitem">
 
-    <?php $currentDetection = $data['currentDetection'];
+    <?php
+    $currentExting = $data['currentExting'];
+    $currentDetection = $data['currentDetection'];
     $currentDetectionId = encrypt_decrypt($currentDetection->dId);
     ?>
     <div class="ma-left">
@@ -14,6 +16,7 @@
                 <div class="ma-back"><i class="fas fa-home firstpage"></i></div>
                 <span>اضافة معلومات كشف عن مطفأة</span>
                 <span><?php echo $currentDetection->dName ?></span>
+                <span><?php echo $currentExting->exName ?></span>
             </div>
 
 

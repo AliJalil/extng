@@ -22,8 +22,7 @@
     <script type="text/javascript" src="<?php echo URLROOT . "/public/vendor/select2.min.js" ?>"></script>
     <link rel="stylesheet" href="<?php echo URLROOT . "/public/vendor/select2.css" ?>" crossorigin="anonymous">
 
-    <script type="text/javascript" src="<?php echo URLROOT . "/public/js/sweetalert2.min.js" ?>"></script>
-    <link rel="stylesheet" href="<?php echo URLROOT . "/public/css/sweetalert2.min.css" ?>" crossorigin="anonymous">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -119,27 +118,23 @@
             <?php endif; ?>
 
             <?php if (checkPermission($data['permissions'], 'StatementView')) : ?>
-                <ul class="ma-iu not-print ma-deleted">
+                <ul class="ma-iu not-print">
 
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <div class="qw-ty">
-                                الإحصائيات
-                            </div>
-                            <ul class="dropdown-menu">
 
-                                <div
-                                        style="height: 33px; background: #fff; text-align: center; line-height: 33px;  border-radius: 5px;"
-                                        class='ma-uyt'>
-                                    <a href="<?php echo URLROOT . "/charts" ?>" class="ma-manga">عرض الاحصائيات</a>
-                                </div>
-                            </ul>
+                                <a href="<?php echo URLROOT . "/main/qr" ?>" class="ma-manga">الكشف بقراءة الرمز</a>
+                            </div>
+
 
 
                     </li>
                 </ul>
 
             <?php endif; ?>
+
+
 
             <?php if (checkPermission($data['permissions'], 'StatementView')) : ?>
                 <a style="font-size: 0px !important;" href="<?php echo URLROOT . "/charts" ?>" class="">س &nbsp;

@@ -242,20 +242,34 @@ function addCommas(nStr) {
     return x1 + x2;
 }
 
-function itemInfoFunction(data = "") {
+function itemInfoFunction(data = "",) {
 
-    Swal.fire( {
-        title: "",
+    swal.fire({
+        title: "طباعة الباركود",
+        text: "قم بالضغط على طباعة",
+        showCancelButton: true,
+        showConfirmButton: true,
+        confirmButtonText: 'طباعة',
+        cancelButtonText: "الغاء",
         html: "<b>" + name + " </b>" +
             "<table id='pointsTable' style='border: none' class='table table-hover table-bordered table-striped table-resource-list table-databases' width='100%'" +
             "       cellspacing='10px' >" +
             "    <tr>" +
-            "<td></td><div style='text-align: center'  id='qrcode'></div></td>" +
+            "<td>" +
+            "<div style=' display: flex;" +
+            "  justify-content: center;'  id='qrcode'></div>" +
+            "</td>" +
             "    </tr>" +
             "</table>",
-        confirmButtonText: "حسنا",
-        confirmButtonColor: "#007f60",
-    } )
+    }).then((result) => {
+        if (result.isConfirmed) {
+            printData()
+        }
+        // if (result.isDismissed) {
+        //     swal.fire("Cancelled!", "Files not deleted!", "warning");
+        //     console.log("Doing Nothing")
+        // }
+    });
 
     if (data) {
         var txt = "";
@@ -268,5 +282,13 @@ function itemInfoFunction(data = "") {
             correctLevel: QRCode.CorrectLevel.H
         } );
     }
-
 }
+
+function printData() {
+    var divToPrint = document.getElementById( "qrcode" );
+    newWin = window.open( "" );
+    newWin.document.write( divToPrint.outerHTML );
+    newWin.print();
+    newWin.close();
+}
+

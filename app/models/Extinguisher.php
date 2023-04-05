@@ -32,7 +32,6 @@ class Extinguisher
         return $this->db->resultset();
     }
 
-
     public function getExtinguisher($row, $rowperpage, $data, $userId): array
     {
         $conditions = array();
@@ -108,7 +107,6 @@ class Extinguisher
         return $result;
     }
 
-
     public function getExtinguisherCount($userId)
     {
         $selectStm = "SELECT count(extinguishers.exId) as 'count' FROM extinguishers
@@ -164,15 +162,23 @@ class Extinguisher
     }
 
 
-    public function getGiftById($gId = 0)
+    public function getExtinguisherById($exId = 0)
     {
 
-        $this->db->query("select notes,amountExtra,vId,gId,gName,dName,details,amount,gWeight,bad,isChecked,checkedBy,gifts.createdBy, benefitSide,authorizedName,FROM_UNIXTIME(gifts.createdAt,'%Y-%m-%d %H:%i:%s') as 'createdAt',specifications.sName,types.gName,types.moneyCode,users.name from gifts 
-                                             inner join types on gifts.tId = types.tId
-                                             inner join specifications on gifts.sId =specifications.sId
-                                             inner join users on gifts.createdBy =users.userId
-                                WHERE  types.isActive =1 and types.isDeleted =0 and gifts.isActive =1 and gifts.isDeleted =0 and gId = :gId and sizes.isDeleted = 0 ");
-        $this->db->bind(':gId', $gId);
+        $this->db->query("select extinguishers.exId, 
+                                  extinguishers.exSeq,
+                                  extinguishers.exNo,
+                                  extinguishers.exName
+                                 ,extinguishers.exType
+                                 ,extinguishers.exSize
+                                 ,extinguishers.exPlace
+                                 ,extinguishers.notes
+                                 ,extinguishers.state
+                                 ,extinguishers.ignoreBy from extinguishers inner join types on extinguishers.exType = types.tId
+                                 inner join sizes on extinguishers.exSize =sizes.sId
+                                 inner join users on extinguishers.createdBy =users.userId
+                                                         where types.isActive =1 and types.isDeleted =0 and extinguishers.isActive =1 and extinguishers.isDeleted =0 and sizes.isDeleted = 0 and exId = :exId");
+        $this->db->bind(':exId', $exId);
         return $this->db->single();
     }
 

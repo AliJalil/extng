@@ -126,9 +126,12 @@ class Detections extends Controller
             }
             die();
         } else {
+            $exId = encrypt_decrypt($exId, 'decrypt');
             $currentDetection = $this->detectModel->getCurrentDetection();
+            $currentExting = $this->extingModel->getExtinguisherById($exId);
 
             $data = [
+                'currentExting' => $currentExting,
                 'currentDetection' => $currentDetection,
                 'permissions' => $this->permissionsArray
             ];
