@@ -113,7 +113,7 @@ class Detect
 
         $q = "";
         if ($data["name"] == 'isCurrent') {
-            $q = $q . "Update  `detections` set isCurrent = 0;";
+            $q = $q . "Update  `detections` set isCurrent = 2;";
         }
 
         $q = $q . "Update `detections` set " . $data["name"] . " = ?  WHERE dId= ? ";

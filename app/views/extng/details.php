@@ -91,7 +91,7 @@
                             '                                    class="btn  btn-sm">' +
                             '                                <i class="fas fa-eye"></i>' +
                             '                            </a>' +
-                            '                             <a href="<?php echo URLROOT . "/detections/addDetectionInfo/"; ?>' + row['exId'] + '"style="transition: all 0.3s; background: #EDEDED;color: red;" data-toggle="tooltip" title="اضافة كشف للمطفئة"' +
+                            '                             <a href="<?php echo URLROOT . "/detections/addDetectionInfo/0/"; ?>' + row['exId'] + '"style="transition: all 0.3s; background: #EDEDED;color: red;" data-toggle="tooltip" title="اضافة كشف للمطفئة"' +
                             '                                    class="btn  btn-sm">' +
                             '                                <i class="fas fa-sensor-fire"></i>' +
                             '                            </a>' +
