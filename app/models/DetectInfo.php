@@ -11,24 +11,24 @@ class DetectInfo
 
     public function getDetectionsInfo($detectionId=0,$exId=0,$userId=0)
     {
-        $query = "select detectionsInfo.*,users.name,extinguishers.exName,extinguishers.exNo,d.dName
-                from detectionsInfo
-                inner join detectionemps on detectionsInfo.deId = detectionemps.deId
+        $query = "select detectionsinfo.*,users.name,extinguishers.exName,extinguishers.exNo,d.dName
+                from detectionsinfo
+                inner join detectionemps on detectionsinfo.deId = detectionemps.deId
                 inner join detections d on detectionemps.dId = d.dId
-                inner join users on users.userId = detectionsInfo.createdBy
-                inner join extinguishers on extinguishers.exId = detectionsInfo.exId
+                inner join users on users.userId = detectionsinfo.createdBy
+                inner join extinguishers on extinguishers.exId = detectionsinfo.exId
         where d.isDeleted = 0 ";
 
         if ($detectionId !=0){
-            $query = $query . " and detectionsInfo.deId={$detectionId}";
+            $query = $query . " and detectionsinfo.deId={$detectionId}";
         }
 
         if ($exId !=0){
-            $query = $query . " and detectionsInfo.exId={$exId}";
+            $query = $query . " and detectionsinfo.exId={$exId}";
         }
 
         if ($userId !=0){
-            $query = $query . " and detectionsInfo.createdBy={$userId}";
+            $query = $query . " and detectionsinfo.createdBy={$userId}";
         }
 
         $this->db->query($query);
@@ -102,7 +102,7 @@ class DetectInfo
 
     public function addDetectionsInfo($data): bool
     {
-        $this->db->query('INSERT INTO detectionsInfo (deId, exId, isThere,lockIsGood,gageIsGood,jetIsGood,handleIsGood,isUsed,notes,createdBy) 
+        $this->db->query('INSERT INTO detectionsinfo (deId, exId, isThere,lockIsGood,gageIsGood,jetIsGood,handleIsGood,isUsed,notes,createdBy) 
                                                     VALUES (:deId,:exId,:isThere,:lockIsGood,:gageIsGood,:jetIsGood,:handleIsGood,:isUsed,:notes,:createdBy)');
         // Bind Values
         $this->db->bind(':deId', $data['deId']);
