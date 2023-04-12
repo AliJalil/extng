@@ -14,7 +14,7 @@ class Main extends Controller
         $this->typeModel = $this->model('Type');
         $this->specificationModel = $this->model('Specification');
         $this->sizeModel = $this->model('Size');
-        $this->detectionEmps = $this->model('DetectionEmps');
+        $this->detectionemps = $this->model('DetectionEmps');
         $this->permissionModel = $this->model('Permission');
         $this->permissionsArray = array_column($this->permissionModel->getPermissionsByUserId($_SESSION['extUserId']), PERMISSION_COLUMN);
 

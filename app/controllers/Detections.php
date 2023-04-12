@@ -15,7 +15,7 @@ class Detections extends Controller
         $this->userModel = $this->model('User');
         $this->typeModel = $this->model('Type');
         $this->sizeModel = $this->model('Size');
-        $this->detectionEmps = $this->model('DetectionEmps');
+        $this->detectionemps = $this->model('DetectionEmps');
         $this->permissionModel = $this->model('Permission');
         $this->permissionsArray = array_column($this->permissionModel->getPermissionsByUserId($_SESSION['extUserId']), PERMISSION_COLUMN);
 
@@ -105,7 +105,7 @@ class Detections extends Controller
             // Sanitize POST
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $data = [
-                'deId' => encrypt_decrypt($detectionId, 'decrypt') ,
+                'deId' => encrypt_decrypt($detectionId, 'decrypt'),
                 'exId' => encrypt_decrypt($exId, 'decrypt'),
                 'assignTo' => isset($_POST['assignTo']) ? trim($_POST['assignTo']) : 0,
                 'isThere' => isset($_POST['isThere']) ? trim($_POST['isThere']) : 0,
@@ -135,7 +135,12 @@ class Detections extends Controller
                 'currentDetection' => $currentDetection,
                 'permissions' => $this->permissionsArray
             ];
-            $this->view('detection/addDetectionInfo', $data);
+
+            if ($currentExting != null) {
+                $this->view('detection/addDetectionInfo', $data);
+            } else {
+                $this->view('qr/notfound', $data);
+            }
         }
     }
 
@@ -249,7 +254,7 @@ class Detections extends Controller
                 'user_id' => isset($_SESSION['user_id']) != '' ? $_SESSION['user_id'] : 0,
             ];
 
-            if ($this->detectionEmps->deleteAdd($data)) {
+            if ($this->detectionemps->deleteAdd($data)) {
                 $Post_error = "200";
                 echo json_encode(array($Post_error));
                 die();
@@ -260,8 +265,8 @@ class Detections extends Controller
 
         } else {
 
-            $extinguishersSelected = $this->detectionEmps->getExtInDetection(1);
-            $extinguishersNotSelected = $this->detectionEmps->getExtNotInDetection(1);
+            $extinguishersSelected = $this->detectionemps->getExtInDetection(1);
+            $extinguishersNotSelected = $this->detectionemps->getExtNotInDetection(1);
             $users = $this->userModel->getJsonUsers();
 
             $data = [

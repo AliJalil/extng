@@ -14,10 +14,10 @@ class DetectionEmps
     public function getExtInDetection($dId)
     {
         $query = "SELECT extinguishers.exId, extinguishers.exNo,extinguishers.exName,users.userId, users.name
-                  FROM detectionEmps
-                  INNER JOIN extinguishers on extinguishers.exId = detectionEmps.exId
-                  INNER JOIN users on users.userId = detectionEmps.userId
-                  where extinguishers.isDeleted = 0 and detectionEmps.isDeleted = 0 and detectionEmps.dId = :dId ";
+                  FROM detectionemps
+                  INNER JOIN extinguishers on extinguishers.exId = detectionemps.exId
+                  INNER JOIN users on users.userId = detectionemps.userId
+                  where extinguishers.isDeleted = 0 and detectionemps.isDeleted = 0 and detectionemps.dId = :dId ";
 
         $query = $query . " order by extinguishers.exId desc";
         $this->db->query($query);
@@ -30,7 +30,7 @@ class DetectionEmps
         $query = "SELECT extinguishers.exId, extinguishers.exNo,extinguishers.exName
                     FROM extinguishers
                     where extinguishers.isDeleted = 0 and
-                    extinguishers.exId not in (select detectionEmps.exId from detectionEmps where detectionEmps.isDeleted = 0 and dId = :dId) ";
+                    extinguishers.exId not in (select detectionemps.exId from detectionemps where detectionemps.isDeleted = 0 and dId = :dId) ";
         $query = $query . " order by extinguishers.exId desc";
         $this->db->query($query);
         $this->db->bind(':dId', $dId);
@@ -65,14 +65,14 @@ class DetectionEmps
 //        $sql = 'update zyaraVol z JOIN voluTb v on z.volId = v.id
 //                    JOIN centers c on v.centerId = c.centerId
 //                    set z.isDeleted = 1 where z.zId = :zId';
-        $sql = 'update detectionEmps d JOIN extinguishers ex on d.exId = ex.exId
+        $sql = 'update detectionemps d JOIN extinguishers ex on d.exId = ex.exId
                     JOIN users u on u.userId = d.userId
                     set d.isDeleted = 1 where d.dId = :dId';
 //        if ($data['centerId'] != 0) {
 //            $sql = $sql . " and c.centerId =" . $data['centerId'];
 //        }
 
-        $sql = $sql . ';INSERT INTO detectionEmps (dId,userId,exId)  VALUES';
+        $sql = $sql . ';INSERT INTO detectionemps (dId,userId,exId)  VALUES';
 
         $elements = array();
         for ($i = 0; $i < count($data['userIds']); $i++) {
@@ -80,7 +80,7 @@ class DetectionEmps
         }
 
         $query = $sql . implode(',', $elements);
-        $query = $query . " ON DUPLICATE KEY update detectionEmps.isDeleted = 0;";
+        $query = $query . " ON DUPLICATE KEY update detectionemps.isDeleted = 0;";
 
         //BIND ZID FOR DELETE QUERY
         $this->db->query($query);

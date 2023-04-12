@@ -50,8 +50,8 @@ class Extinguisher
          inner join sizes on extinguishers.exSize =sizes.sId
          inner join users on extinguishers.createdBy =users.userId";
         if ($userId != 0) {
-            $innerQuery = $innerQuery . " inner join detectionEmps on extinguishers.exId =detectionEmps.exId ";
-            $conditions[] = "detectionEmps.userId = '{$userId}'";
+            $innerQuery = $innerQuery . " inner join detectionemps on extinguishers.exId =detectionemps.exId ";
+            $conditions[] = "detectionemps.userId = '{$userId}'";
         }
 
         $innerQuery = $innerQuery . " where types.isActive =1 and types.isDeleted =0 and extinguishers.isActive =1 and extinguishers.isDeleted =0 and sizes.isDeleted = 0  ";

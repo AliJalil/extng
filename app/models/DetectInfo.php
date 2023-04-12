@@ -13,8 +13,8 @@ class DetectInfo
     {
         $query = "select detectionsInfo.*,users.name,extinguishers.exName,extinguishers.exNo,d.dName
                 from detectionsInfo
-                inner join detectionEmps on detectionsInfo.deId = detectionEmps.deId
-                inner join detections d on detectionEmps.dId = d.dId
+                inner join detectionemps on detectionsInfo.deId = detectionemps.deId
+                inner join detections d on detectionemps.dId = d.dId
                 inner join users on users.userId = detectionsInfo.createdBy
                 inner join extinguishers on extinguishers.exId = detectionsInfo.exId
         where d.isDeleted = 0 ";
