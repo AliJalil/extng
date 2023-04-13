@@ -3,6 +3,8 @@
 <head>
     <meta charset="utf-8">
     <title><?php echo SITENAME ?> </title>
+    <link rel="manifest" href="<?php echo URLROOT . "/public/manifest.json" ?>">
+
     <script type="text/javascript" src="<?php echo URLROOT . "/public/js/moment.min.js" ?>"></script>
     <script type="text/javascript" src="<?php echo URLROOT . "/public/js/fontawesome.js" ?>"></script>
     <link rel="stylesheet" href="<?php echo URLROOT . "/public/vendor/bootstrap@5.0.2/css/bootstrap.min.css" ?>"
@@ -56,7 +58,7 @@
                         <?php if (checkPermission($data['permissions'], 'ManagePage')): ?>
                             <a class="ma-manga" href="<?php echo URLROOT . "/manages/"; ?>"> إدارة </a>
                         <?php endif; ?>
-
+                        <button class="ma-manga" id="addToHomeScreenButton"> Shortcut </button>
                         <a class="ma-manga" href="<?php echo URLROOT . "/users/logout"; ?>">تسجيل الخروج</a>
                     </div>
                 </ul>
@@ -211,6 +213,43 @@
     <div class="bg-overlay"></div>
 </div>
 
+<script>
+    // Listen for the beforeinstallprompt event
+    window.addEventListener('beforeinstallprompt', (event) => {
+        // Prevent the default behavior of the event to suppress the browser's default prompt
+        event.preventDefault();
+
+        // Store the event object so that it can be used later
+        const deferredPrompt = event;
+
+        // Show your custom "Add to Home Screen" UI, e.g., by displaying a button or a banner
+        const addToHomeScreenButton = document.getElementById('addToHomeScreenButton');
+        addToHomeScreenButton.style.display = 'block';
+
+        // Add a click event listener to the "Add to Home Screen" button
+        addToHomeScreenButton.addEventListener('click', () => {
+            // Hide the "Add to Home Screen" UI
+            addToHomeScreenButton.style.display = 'none';
+
+            // Show the browser's installation prompt
+            deferredPrompt.prompt();
+
+            // Wait for the user's response to the prompt
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the installation prompt');
+                    // Handle the installation confirmation, e.g., by tracking installation event or showing a success message
+                } else {
+                    console.log('User dismissed the installation prompt');
+                    // Handle the installation dismissal, e.g., by tracking dismissal event or showing a cancellation message
+                }
+
+                // Reset the deferredPrompt so that it can be used again in the future
+                deferredPrompt = null;
+            });
+        });
+    });
+</script>
 
 <script>
 

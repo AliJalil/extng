@@ -12,7 +12,6 @@ class Main extends Controller
         $this->extingModel = $this->model('Extinguisher');
         $this->userModel = $this->model('User');
         $this->typeModel = $this->model('Type');
-        $this->specificationModel = $this->model('Specification');
         $this->sizeModel = $this->model('Size');
         $this->detectionemps = $this->model('DetectionEmps');
         $this->permissionModel = $this->model('Permission');
