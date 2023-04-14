@@ -1,8 +1,8 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 <?php require APPROOT . '/views/inc/dteditableScript.php'; ?>
 <script src="<?php echo URLROOT . "/public/js/dtJs.js"; ?>"></script>
-<script src="<?php echo URLROOT . "/public/vendor/qrcode.min.js"?>"></script>
-<script src="<?php echo URLROOT . "/public/vendor/lazysizes.min.js"?>"></script>
+<script src="<?php echo URLROOT . "/public/vendor/qrcode.min.js" ?>"></script>
+<script src="<?php echo URLROOT . "/public/vendor/lazysizes.min.js" ?>"></script>
 
 <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
 
@@ -52,7 +52,8 @@
             'ajax': {
                 'url': '<?php echo URLROOT . "/main/details" ?>',
                 "type": 'POST',
-                "data": function (data) {},
+                "data": function (data) {
+                },
             },
             columns: [
                 {data: 'exSeq'},
@@ -69,12 +70,12 @@
                         var txt = "";
                         if (row['state'] == 2) {
                             state = 'تالف';
-                        //     txt += '                        <br>' +
-                        //         '                       <div style="margin-top: 5px">' +
-                        //         '                            <button style="transition: all 0.3s; background: #EDEDED;color: #007f60;" id="infoItem-' + row['ignoreBy'] + '" data-toggle="tooltip" title="اتلفه المستخدم"' +
-                        //         '                                class="btn btn-sm">' +
-                        //         '                            <i class="fas fa-info-square"></i>' +
-                        //         '                        </button>';
+                            //     txt += '                        <br>' +
+                            //         '                       <div style="margin-top: 5px">' +
+                            //         '                            <button style="transition: all 0.3s; background: #EDEDED;color: #007f60;" id="infoItem-' + row['ignoreBy'] + '" data-toggle="tooltip" title="اتلفه المستخدم"' +
+                            //         '                                class="btn btn-sm">' +
+                            //         '                            <i class="fas fa-info-square"></i>' +
+                            //         '                        </button>';
                         }
                         return '<a class="state" id="state" data-name="state"  data-type="select" data-emptytext="فارغ" data-pk=' + row['exId'] + '>' + state + '</a>' +
                             txt +
@@ -120,7 +121,7 @@
                         return '<a class="exSeq" id="exSeq" data-name="exNo"  data-type="text" data-pk=' + row['exId'] + '>' + data + '</a>'
                     }
                 },
-                 {
+                {
                     targets: "exNo_th",
                     render: function (data, type, row) {
                         return '<a class="exNo" id="exNo" data-name="exNo"  data-type="text" data-pk=' + row['exId'] + '>' + data + '</a>'
@@ -171,6 +172,7 @@
                 $( "#exType_th" ).select2();
             }
         } )
+
         emTable.on( 'draw', function () {
 
             <?php if (checkPermission($data['permissions'], 'EditGift')):?>
@@ -221,10 +223,9 @@
 
         $( document ).on( 'click', '[id^="QR-item-"]', function () {
             var button = $( this );
-
             var id = this.id.split( '-' ).pop();
-            console.log(id);
-            itemInfoFunction( id);
+            console.log( id );
+            itemInfoFunction( id );
         } );
 
     } );

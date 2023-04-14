@@ -17,6 +17,7 @@
                 <span>اضافة معلومات كشف عن مطفأة</span>
                 <span><?php echo $currentDetection->dName ?></span>
                 <span><?php echo $currentExting->exName ?></span>
+                <input type="hidden" name="currentDetectionId" value="<?php echo $currentDetectionId?>">
             </div>
 
 

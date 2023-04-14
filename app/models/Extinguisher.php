@@ -161,7 +161,6 @@ class Extinguisher
         return $this->db->resultset();
     }
 
-
     public function getExtinguisherById($exId = 0)
     {
 
@@ -182,50 +181,16 @@ class Extinguisher
         return $this->db->single();
     }
 
-
-    public function getGiftSumAmountById($gId = 0)
-    {
-
-        $this->db->query("SELECT  gName as 'text',sum(gifts.amount) as 'value'
-                                FROM types
-                                inner join gifts on gifts.tId = types.tId
-                                WHERE gifts.isDeleted != 1
-                                and types.isDeleted != 1
-                                and gifts.isActive != 0
-                                and types.isActive != 0
-                                and dType = :gId
-                                GROUP BY types.tId ");
-        $this->db->bind(':gId', $gId);
-        return $this->db->resultset();
-    }
-
-    public function getGiftSumAmountBySpecifications($dType = 1)
-    {
-
-        $this->db->query("SELECT sName as 'text', sum(gifts.amount) as 'value'
-        FROM specifications
-        inner join gifts on gifts.sId = specifications.sId
-        inner join types on gifts.tId = types.tId
-        WHERE gifts.isDeleted != 1
-        and sizes.isDeleted != 1
-        and gifts.isActive != 0
-        and specifications.isActive != 0
-        and types.dType = :dType
-        GROUP BY specifications.sId ");
-        $this->db->bind(':dType', $dType);
-        return $this->db->resultset();
-    }
-
-
     public function addExt($data)
     {
 
 
-        $this->db->query('INSERT INTO extinguishers (exSeq, exNo, exType, exSize, exPlace,notes,createdBy) 
-               VALUES (:exSeq,:exNo,:exType,:exSize,:exPlace,:notes,:createdBy)');
+        $this->db->query('INSERT INTO extinguishers (exSeq, exNo,exName, exType, exSize, exPlace,notes,createdBy) 
+               VALUES (:exSeq,:exNo,:exName,:exType,:exSize,:exPlace,:notes,:createdBy)');
         // Bind Values
         $this->db->bind(':exSeq', $data['exSeq']);
         $this->db->bind(':exNo', $data['exNo']);
+        $this->db->bind(':exName', $data['exName']);
         $this->db->bind(':exType', $data['exType']);
         $this->db->bind(':exSize', $data['exSize']);
         $this->db->bind(':exPlace', $data['exPlace']);

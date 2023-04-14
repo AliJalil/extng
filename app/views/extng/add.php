@@ -21,6 +21,10 @@
                     <td class="rowone">الرقم</td>
                     <td><input placeholder="الرقم" type="number" name="exNo" id="exNo" required></td>
                 </tr>
+                <tr>
+                    <td class="rowone">الاسم</td>
+                    <td><input placeholder="الاسم" type="text" name="exName" id="exName" required></td>
+                </tr>
 
                 <tr>
                     <td class="rowone">النوع</td>

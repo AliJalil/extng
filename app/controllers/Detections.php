@@ -105,7 +105,7 @@ class Detections extends Controller
             // Sanitize POST
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $data = [
-                'deId' => encrypt_decrypt($detectionId, 'decrypt'),
+                'deId' => encrypt_decrypt($_POST['currentDetectionId'], 'decrypt'),
                 'exId' => encrypt_decrypt($exId, 'decrypt'),
                 'assignTo' => isset($_POST['assignTo']) ? trim($_POST['assignTo']) : 0,
                 'isThere' => isset($_POST['isThere']) ? trim($_POST['isThere']) : 0,

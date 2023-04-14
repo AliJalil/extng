@@ -213,7 +213,7 @@ class Manages extends Controller
                 if ($data['pk'] == 0) {
                     die();
                 }
-                if ($this->sizeModel->updateSpecification($data)) {
+                if ($this->sizeModel->updateSize($data)) {
                     $Post_error = "succ";
                     echo json_encode(array($Post_error));
                 }

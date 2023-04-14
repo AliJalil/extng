@@ -34,6 +34,7 @@ class Main extends Controller
             $data = [
                 'exSeq' => isset($_POST['exSeq']) ? trim($_POST['exSeq']) : 0,
                 'exNo' => isset($_POST['exNo']) ? trim($_POST['exNo']) : 0,
+                'exName' => isset($_POST['exName']) ? trim($_POST['exName']) : 0,
                 'exType' => isset($_POST['exType']) ? trim($_POST['exType']) : 0,
                 'exSize' => isset($_POST['exSize']) ? trim($_POST['exSize']) : 0,
                 'exPlace' => isset($_POST['exPlace']) ? trim($_POST['exPlace']) : '',
