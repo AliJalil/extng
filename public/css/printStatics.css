@@ -1,0 +1,114 @@
+/*@media print {*/
+/*    .not-print {*/
+/*        display: none;*/
+/*    }*/
+
+/*    @page {*/
+/*        margin-top: 50px;*/
+/*        margin-bottom: 0;*/
+/*    }*/
+
+/*    body {*/
+/*        padding-top: 72px;*/
+/*        padding-bottom: 72px;*/
+/*    }*/
+
+/*    !*.article { page-break-after: always; }*!*/
+/*}*/
+
+.maprintdiv {
+    display: inline-block;
+}
+@media print {
+    .not-print {
+        display: none;!important;
+    }
+    .ma-background {
+        border-radius: 0px;
+        height: 80px;
+        background-color: #FFF7E4;
+        margin-bottom: 0px;
+        margin: 0px;
+    }
+    .accordion-body {
+        background-color: #fff !important;
+    }
+    .maopo {
+        float: left;
+    }
+    .maspanprint {
+        display: block !important;
+    }
+#table1,#table2,#table3{
+    display: none;
+}
+    .maspanprint2 {
+        display: block !important;
+    }
+    .maprintdiv {
+        display: inline-block;
+        position: relative;
+        top: 13px;
+    }
+    .ma-inma {
+        display: none;!important;
+    }
+    .ma-deteprint {
+        display: inline-block !important;
+        position: absolute;
+        left: 15px;
+        top: 30px;
+    }
+    .ma-uyt {
+        visibility: hidden;
+    }
+    .ma-lefttrcavk {
+        visibility: hidden;
+    }
+
+    .ma-uyt2 {
+        right: -40px;
+    }
+    .imgeprint img {
+        height: 50px !important;
+        width: 50px !important;
+    }
+    .MA-vistitem2 {
+        width: 100%;
+        border-radius: 0px;
+        box-shadow: none;
+    }
+    .ma-spanprint {
+        margin-top: 12px;
+        margin-right: 15px;
+        background-color: #007F5E;
+        padding: 15px;
+        border-radius: 30px;
+        color: #fff;
+        width: 47%;
+        display: inline-block;
+    }
+    .ma-spanprint2 span{
+        margin: 0px 7%;
+    }
+.ma-timein{
+    display: block;
+}
+    .mjk th {
+        background-color: #054739 !important;
+        margin: 0px 12px;
+
+
+    }
+
+    .styled-table thead tr {
+        background-color: white !important;
+    }
+
+    body {
+        margin: 0px;
+    }
+
+
+}
+

@@ -1,0 +1,34 @@
+@media print {
+    .forprint {
+        display: none;
+    !important;
+    }
+
+    .printable {
+        display: none;
+    }
+
+    /*.ma-left img {*/
+    /*    display: none;*/
+    /*}*/
+
+    .ma-footer3 {
+        display: none;
+    }
+
+    body {
+        background-color: #fff !important;
+    }
+
+    .MA-vistitem {
+
+        box-shadow: none;
+    }
+
+    .anmilforprint {
+        top: 20pc !important;
+    }
+}
+.dontShow{
+    display: none;
+}

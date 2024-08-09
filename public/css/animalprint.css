@@ -1,0 +1,42 @@
+
+#table6, table7, summarizeTable{
+    font-size: 10px;
+}
+.ma-kl {
+    display: inline-block;
+    margin: 10px 10px 10px 10px !important;
+}
+.jkj> tbody > tr:nth-of-type(odd) {
+    background-color: #E5E9EB !important;
+}
+.print_open{
+    background-color: white;
+    border-radius: 12px;
+}
+.print_st{
+    color: white;
+}
+@media print {
+    #table6, table7, summarizeTable{
+        font-size: 10px!important;
+        border-radius: 12px!important;
+        border-radius: 12px!important;
+        margin:0px;
+        padding: 0px;
+        width: 100%;
+    }
+    table td{
+        font-size: 10px!important;
+    }
+    .accordion-body{
+        border-radius: 12px!important;
+
+        margin:20px auto ;
+        padding: 30px;
+        width: 90%;
+        background-color: #054739!important;
+    }
+    .ma-footer3{
+        display: none;
+    }
+}

@@ -1,0 +1,281 @@
+.panel-primary > .panel-heading {
+    background-color: #5E837B;
+!important;
+}
+
+.styled-table {
+    margin: 0 auto; /* or margin: 0 auto 0 auto */
+    display: inline-table;
+    background-color: white!important;
+    width: 100%!important;
+    border-radius: 13px!important;
+}
+
+.accordion-body table > tbody > tr:nth-of-type(odd) {
+    background-color: #E5E9EB !important;
+}
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+
+}
+
+.styled-table thead tr {
+    background-color: #054739 !important;
+    border: 0px !important;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    text-align: center;
+
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.accordion-button {
+
+
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
+
+.accordion-body {
+    padding: 2rem 2rem;
+    background-color: #054739 !important;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table {
+    margin: 0px;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #4ECBA0;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #4ECBA0;
+}
+
+.accordion-button.collapsed {
+    background: white;
+}
+
+.accordion-button.collapsed::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+.accordion-button::after {
+
+    margin-left: 5px;
+    margin-right: 0.5em;
+    position: absolute;
+    left: 20px;
+    /*background-color: white;*/
+    color: white !important;
+}
+
+#table1, #table2, #table3,#table4,#table5,#detailsTable,#table7,#summarizeTable {
+    background-color: white;
+    width: 100%;
+    border-radius: 13px;
+}
+
+
+.accordion-item {
+    border: 0 !important;
+    margin-bottom: 10px;
+
+}
+
+.accordion-button {
+    background: #054739 !important;
+    border-radius: 12px;
+    margin-top: 45px;
+}
+
+.accordion-item:first-of-type .accordion-button {
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+}
+
+.accordion-item:last-of-type .accordion-button.collapsed
+.card-title {
+    margin: 0px;
+}
+
+.accordion-button.collapsed {
+    border-radius: 12px !important;
+}
+
+/*.accordion-button:not(.collapsed)::after{*/
+/*    color: white !important;*/
+/*}*/
+.ma-headerprint {
+    display: none;
+}
+.golddetedction{
+    background-color: #054739!important;
+}
+.card-title {
+    margin-bottom: 0px !important;
+}
+.golddetedction th{
+    padding: 12px !important;
+    margin-top: 12px;
+}
+.jkj{
+    margin-top: 40px;
+}
+#dateFromD{
+    display: inline-block;
+}
+#dateFromH{
+    display: inline-block;
+    margin-right: 25px;
+    margin-left: 25px;
+    color: #054739;
+    font-weight: 700;
+}
+#dateToD{
+    display: inline-block;
+}
+#dateToH{
+    display: inline-block;
+    margin-right: 25px;
+    color: #054739;
+    font-weight: 700;
+}
+#section-to-print{
+    text-align: center;
+}
+.ma-addtime{
+    text-align: center;
+    margin: 30px 0px;
+}
+@media print {
+    .ma-headerprint {
+        position: absolute;
+        top: 90px;
+        right: 5px;
+        display: block;
+        width: 100%;
+    }
+    .accordion{
+        margin-top: 100px!important;
+    }
+
+    .accordion-body {
+
+        margin-top: 100px;
+    }
+    .ma-ytr{
+        color: #2E8B57;!important;
+        background-color: red;!important;
+    }
+.table{
+    width: 100%!important;
+}
+
+    .masier #table1{
+        width: 100%;
+    }
+.ma-appernace{
+    display: block!important;
+    position: relative !important;
+    top: 15px!important;
+    left: 20px!important;
+    font-weight: 100;!important;
+}
+    .maiew {
+        width: 10% !important;
+    }
+    .maopo{
+        margin: 0px;
+    }
+    #dateInfo {
+        margin-bottom: 100px;
+    }
+.accordion-collapse{
+    display: none!important;
+}
+    #accordionFormat{
+        width: 100%!important;
+    }
+    .masier .accordion-collapse{
+        display: table!important;
+width: 100%;
+    }
+
+    .masier .accordion-collapse #table1,#table2,#table3{
+        display: table!important;
+
+
+    }
+    .ma-inprint{
+        width: 60%!important;
+        margin-right:120px;
+    }
+    .accordion-button {
+        text-align: center;
+        display: block;
+        margin: auto;
+        background-color: #fff !important;
+        border: 1px solid #767676;!important;
+        color: black !important;
+        width: 94%;
+        font-weight: 500!important;
+        border-radius: 30px !important;
+
+    }
+
+    .ma-spanprint2{
+        text-align: center;
+        margin-top: 60px;
+        display: flex;
+        width: 100%;
+
+    }
+    body{
+        background-color: #fff!important;
+        margin-top: 50px;
+
+    }
+
+    .table-responsive{
+        position: relative;
+    }
+    .accordion-button.collapsed {
+        border-radius: 30px !important;
+    }
+
+    .accordion-button span {
+        color: black !important;
+    }
+
+    .accordion-button:not(.collapsed)::after {
+        background-image: none !important;
+    }
+
+
+    .accordion-body {
+        background-color: #fff !important;
+    }
+
+
+
+}
