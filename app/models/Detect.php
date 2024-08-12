@@ -88,7 +88,7 @@ class Detect
         return $this->db->single()->count;
     }
 
-    public function addDetect($data)
+    public function addDetect($data): bool
     {
         $this->db->query('INSERT INTO detections (dName, startIn, endAt, notes,createdBy) 
                VALUES (:dName,:startIn,:endAt,:notes,:createdBy)');

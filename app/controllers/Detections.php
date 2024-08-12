@@ -13,22 +13,22 @@ class Detections extends Controller
     public $detectModel;
     public $detectionemps;
     public $detectInfo;
-    private $createdBy;
+    private $extUserId;
 
     public function __construct()
     {
 
         if (isLoggedIn()) {
-            $this->createdBy = $_SESSION['extUserId'];
+            $this->extUserId = $_SESSION['extUserId'];
         } else {
             $bearer_token = get_bearer_token();
             $jwt_payload = is_jwt_valid($bearer_token);
             if (!$jwt_payload) {
                 die(json_encode(array('error' => 'Access denied')));
             }
-            $this->createdBy = isset($_SESSION['extUserId']) ? trim($_SESSION['extUserId']) : $jwt_payload->userId;
+            $this->extUserId = isset($_SESSION['extUserId']) ? trim($_SESSION['extUserId']) : $jwt_payload->userId;
         }
-        if (!$this->createdBy) {
+        if (!$this->extUserId) {
             die(json_encode(array('error' => 'Access denied')));
         }
 
@@ -41,7 +41,7 @@ class Detections extends Controller
         $this->sizeModel = $this->model('Size');
         $this->detectionemps = $this->model('DetectionEmps');
         $this->permissionModel = $this->model('Permission');
-        $this->permissionsArray = array_column($this->permissionModel->getPermissionsByUserId( $this->createdBy ), PERMISSION_COLUMN);
+        $this->permissionsArray = array_column($this->permissionModel->getPermissionsByUserId($this->extUserId), PERMISSION_COLUMN);
 
     }
 
@@ -123,13 +123,12 @@ class Detections extends Controller
     public function addDetectionInfo($detectionId = 0, $exId = 0)
     {
 
-        if (!isLoggedIn() && !$this->createdBy) {
+        if (!isLoggedIn() && !$this->extUserId) {
             echo "invalid request";
             die();
         }
 
-        if ($exId ==0)
-        {
+        if ($exId == 0) {
             echo "extinguisher undefined";
             die();
         }
@@ -152,7 +151,7 @@ class Detections extends Controller
                 'isUsed' => isset($_POST['isUsed']) ? trim($_POST['isUsed']) : 0,
                 'notes' => isset($_POST['notes']) ? trim($_POST['notes']) : "",
                 'gps' => isset($_POST['gps']) ? trim($_POST['gps']) : "",
-                'createdBy' => $this->createdBy,
+                'createdBy' => $this->extUserId,
 
             ];
 
@@ -309,4 +308,25 @@ class Detections extends Controller
             $this->view('detection/detect', $data);
         }
     }
+
+    public function getUserDetections($exId = 0)
+    {
+        if (!isLoggedIn() && !$this->extUserId) {
+            echo "invalid request";
+            die();
+        }
+        $currentDetection = $this->detectModel->getCurrentDetection();
+        $detectionId =$currentDetection->dId;
+        $userId = $this->extUserId;
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+//            $detectInfo = $this->detectInfo->getDetectionsInfo($detectionId, encrypt_decrypt($exId, 'decrypt'), $userId);
+            $detectInfo = $this->detectInfo->getDetectionsInfo($detectionId,0, $userId);
+            $data = [
+                'detectInfo' => $detectInfo
+            ];
+            echo json_encode($data);
+
+        }
+    }
+
 }

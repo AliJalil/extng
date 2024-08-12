@@ -11,7 +11,16 @@ class DetectInfo
 
     public function getDetectionsInfo($detectionId=0,$exId=0,$userId=0)
     {
-        $query = "select detectionsinfo.*,users.name,extinguishers.exName,extinguishers.exNo,d.dName
+        $query = "select 
+    detectionsinfo.isThere,
+    detectionsinfo.lockIsGood,
+    detectionsinfo.gageIsGood,
+    detectionsinfo.jetIsGood,
+    detectionsinfo.handleIsGood,
+    detectionsinfo.isUsed,
+    detectionsinfo.notes,
+    detectionsinfo.gps,
+   extinguishers.exNo,d.dName
                 from detectionsinfo
                 inner join detectionemps on detectionsinfo.deId = detectionemps.deId
                 inner join detections d on detectionemps.dId = d.dId
