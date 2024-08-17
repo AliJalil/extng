@@ -15,6 +15,27 @@ class Extinguisher
         $this->db = new Database;
     }
 
+    public function getExtinguishersApi($userId)
+    {
+        $query = "select extinguishers.exId,
+    extinguishers.exSeq,
+    extinguishers.exNo,
+    extinguishers.exName
+     ,extinguishers.exType
+     ,extinguishers.exSize
+     ,extinguishers.exPlace
+     ,extinguishers.notes
+     ,extinguishers.state
+     ,extinguishers.ignoreBy from extinguishers inner join types on extinguishers.exType = types.tId
+                                                inner join sizes on extinguishers.exSize =sizes.sId
+                                                inner join users on extinguishers.createdBy =users.userId
+                                                inner join detectionemps on extinguishers.exId =detectionemps.exId
+                                                where detectionemps.userId =:userId and extinguishers.exId not in (select exId from detectionsinfo where detectionsinfo.isDeleted = 0)";
+        $this->db->query($query);
+        $this->db->bind(':userId', $userId);
+        return $this->db->resultset();
+    }
+
     public function getExtinguishers()
     {
         $query = "select extinguishers.exId, extinguishers.exSeq,extinguishers.exNo,extinguishers.exName
@@ -37,15 +58,15 @@ class Extinguisher
         $conditions = array();
 
         $query = "select extinguishers.exId, 
-        extinguishers.exSeq,
-        extinguishers.exNo,
-        extinguishers.exName
-     ,extinguishers.exType
-     ,extinguishers.exSize
-     ,extinguishers.exPlace
-     ,extinguishers.notes
-     ,extinguishers.state
-     ,extinguishers.ignoreBy ";
+         extinguishers.exSeq,
+         extinguishers.exNo,
+         extinguishers.exName
+        ,extinguishers.exType
+        ,extinguishers.exSize
+        ,extinguishers.exPlace
+        ,extinguishers.notes
+        ,extinguishers.state
+        ,extinguishers.ignoreBy ";
         $innerQuery = " from extinguishers inner join types on extinguishers.exType = types.tId
          inner join sizes on extinguishers.exSize =sizes.sId
          inner join users on extinguishers.createdBy =users.userId";

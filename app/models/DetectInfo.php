@@ -11,7 +11,8 @@ class DetectInfo
 
     public function getDetectionsInfo($detectionId=0,$exId=0,$userId=0)
     {
-        $query = "select 
+        $query = "select
+    detectionsinfo.exId,
     detectionsinfo.isThere,
     detectionsinfo.lockIsGood,
     detectionsinfo.gageIsGood,
@@ -20,13 +21,19 @@ class DetectInfo
     detectionsinfo.isUsed,
     detectionsinfo.notes,
     detectionsinfo.gps,
-   extinguishers.exNo,d.dName
-                from detectionsinfo
-                inner join detectionemps on detectionsinfo.deId = detectionemps.deId
-                inner join detections d on detectionemps.dId = d.dId
-                inner join users on users.userId = detectionsinfo.createdBy
-                inner join extinguishers on extinguishers.exId = detectionsinfo.exId
-        where d.isDeleted = 0 ";
+    extinguishers.exNo,
+    extinguishers.exName,
+    d.dName,
+    types.tName,
+    sizes.sName
+from detectionsinfo
+         inner join detectionemps on detectionsinfo.deId = detectionemps.deId
+         inner join detections d on detectionemps.dId = d.dId
+         inner join users on users.userId = detectionsinfo.createdBy
+         inner join extinguishers on extinguishers.exId = detectionsinfo.exId
+         inner join types on extinguishers.exType = types.tId
+         inner join sizes on sizes.sId = extinguishers.exSize
+where d.isDeleted = 0";
 
         if ($detectionId !=0){
             $query = $query . " and detectionsinfo.deId={$detectionId}";
@@ -111,8 +118,8 @@ class DetectInfo
 
     public function addDetectionsInfo($data): bool
     {
-        $this->db->query('INSERT INTO detectionsinfo (deId, exId, isThere,lockIsGood,gageIsGood,jetIsGood,handleIsGood,isUsed,notes,createdBy) 
-                                                    VALUES (:deId,:exId,:isThere,:lockIsGood,:gageIsGood,:jetIsGood,:handleIsGood,:isUsed,:notes,:createdBy)');
+        $this->db->query('INSERT INTO detectionsinfo (deId, exId, isThere,lockIsGood,gageIsGood,jetIsGood,handleIsGood,isUsed,gps,notes,createdBy) 
+                                                    VALUES (:deId,:exId,:isThere,:lockIsGood,:gageIsGood,:jetIsGood,:handleIsGood,:isUsed,:gps,:notes,:createdBy)');
         // Bind Values
         $this->db->bind(':deId', $data['deId']);
         $this->db->bind(':exId', $data['exId']);
@@ -122,6 +129,7 @@ class DetectInfo
         $this->db->bind(':jetIsGood', $data['jetIsGood']);
         $this->db->bind(':handleIsGood', $data['handleIsGood']);
         $this->db->bind(':isUsed', $data['isUsed']);
+        $this->db->bind(':gps', $data['gps']);
         $this->db->bind(':notes', $data['notes']);
         $this->db->bind(':createdBy', $data['createdBy']);
 

@@ -22,11 +22,13 @@ class Main extends Controller
             $bearer_token = get_bearer_token();
             $jwt_payload = is_jwt_valid($bearer_token);
             if (!$jwt_payload) {
+                http_response_code(401);
                 die(json_encode(array('error' => 'Access denied')));
             }
             $this->createdBy = isset($_SESSION['extUserId']) ? trim($_SESSION['extUserId']) : $jwt_payload->userId;
         }
         if (!$this->createdBy) {
+            http_response_code(401);
             die(json_encode(array('error' => 'Access denied')));
         }
 
@@ -154,55 +156,33 @@ class Main extends Controller
 
     public function getAllExtinguishers()
     {
-        if (!isLoggedIn() && !$this->createdBy) {
-            echo "invalid request";
-            die();
-        }
-
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             if (checkPermission($this->permissionsArray, 'StatementViewUser')) {
                 $userId = $this->createdBy;
-            } elseif (checkPermission($this->permissionsArray, 'StatementView')) {
-                $userId = 0;
             }
 
-            $draw = $_POST['draw'];
-            $row = $_POST['start'];
-            $rowperpage = $_POST['length']; // Rows display per page
-            $iTotalRecords = $this->extingModel->getExtinguisherCount($userId);
+//            elseif (checkPermission($this->permissionsArray, 'StatementView')) {
+//                $userId = 0;
+//            }
 
-            if ($rowperpage == -1) {
-                $rowperpage = $iTotalRecords;
+
+
+            $result = $this->extingModel->getExtinguishersApi( $this->createdBy);
+            foreach ($result as $key => $item) {
+                $item->exId = encrypt_decrypt($item->exId);
             }
 
+            $response = $result;
 
-            $result = $this->extingModel->getExtinguisher($row, $rowperpage, [], $userId);
-            foreach ($result[1] as $key => $item) {
-                $result[1][$key]->exId = encrypt_decrypt($item->exId);
-            }
-
-            $response = array(
-                "draw" => intval($draw),
-                "iTotalRecords" => $iTotalRecords,
-                "iTotalDisplayRecords" => $result[0],
-                "aaData" => $result[1],
-            );
 
             echo json_encode($response);
 
         } else {
 
-            $types = $this->typeModel->getJsonTypes();
-            $sizes = $this->sizeModel->getJsonSizes();
-            $data = [
-                'types' => $types,
-                'sizes' => $sizes,
-                'permissions' => $this->permissionsArray
-            ];
-
-            $this->view('extng/details2', $data);
+            echo "invalid request";
+            die();
         }
     }
 

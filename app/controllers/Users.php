@@ -206,6 +206,10 @@ class Users extends Controller
         }
     }
 
+
+
+
+    // Create User Session
     public function login($isApp =0)
     {
 //        if (isLoggedIn()) {
@@ -238,8 +242,8 @@ class Users extends Controller
             // Check for user
             if (!$this->userModel->findUserByUserName($data['userName'])) {
                 // No User
-                $Post_error = "12";
-                echo json_encode(array($Post_error));
+                http_response_code(403);
+                echo json_encode(array("error" => "Forbidden"));
                 die();
             }
 
@@ -261,8 +265,9 @@ class Users extends Controller
                     $this->createUserSession($loggedInUser);
                 }
             } else {
-                $Post_error = "12";
-                echo json_encode(array($Post_error));
+
+                http_response_code(403);
+                echo json_encode(array("error" => "Forbidden"));
                 die();
             }
 
@@ -271,7 +276,6 @@ class Users extends Controller
             $this->view('users/login', []);
         }
     }
-
 
     // Create User Session
     public function createUserJwt($user, $permissions)

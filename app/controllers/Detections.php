@@ -24,11 +24,13 @@ class Detections extends Controller
             $bearer_token = get_bearer_token();
             $jwt_payload = is_jwt_valid($bearer_token);
             if (!$jwt_payload) {
+                http_response_code(401);
                 die(json_encode(array('error' => 'Access denied')));
             }
             $this->extUserId = isset($_SESSION['extUserId']) ? trim($_SESSION['extUserId']) : $jwt_payload->userId;
         }
         if (!$this->extUserId) {
+            http_response_code(401);
             die(json_encode(array('error' => 'Access denied')));
         }
 
