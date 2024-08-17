@@ -323,6 +323,9 @@ class Detections extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 //            $detectInfo = $this->detectInfo->getDetectionsInfo($detectionId, encrypt_decrypt($exId, 'decrypt'), $userId);
             $detectInfo = $this->detectInfo->getDetectionsInfo($detectionId,0, $userId);
+            foreach ($detectInfo as $key => $item) {
+                $item->exId = encrypt_decrypt($item->exId);
+            }
             $data = [
                 'detectInfo' => $detectInfo
             ];
