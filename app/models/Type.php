@@ -63,7 +63,7 @@ class Type
     }
 
 
-    public function adtId($data)
+    public function addType($data)
     {
         // Prepare Query
         $this->db->query('INSERT INTO types (tName,createdBy) VALUES (:gName,:createdBy)');

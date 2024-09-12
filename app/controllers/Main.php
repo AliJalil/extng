@@ -163,20 +163,12 @@ class Main extends Controller
                 $userId = $this->createdBy;
             }
 
-//            elseif (checkPermission($this->permissionsArray, 'StatementView')) {
-//                $userId = 0;
-//            }
-
-
-
             $result = $this->extingModel->getExtinguishersApi( $this->createdBy);
             foreach ($result as $key => $item) {
                 $item->exId = encrypt_decrypt($item->exId);
             }
 
             $response = $result;
-
-
             echo json_encode($response);
 
         } else {

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title><?php echo SITENAME ?> </title>
-    <link rel="manifest" href="<?php echo URLROOT . "/public/manifest.json" ?>">
+
 
     <script type="text/javascript" src="<?php echo URLROOT . "/public/js/moment.min.js" ?>"></script>
     <script type="text/javascript" src="<?php echo URLROOT . "/public/js/fontawesome.js" ?>"></script>

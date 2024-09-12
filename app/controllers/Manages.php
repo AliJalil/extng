@@ -16,7 +16,7 @@ class Manages extends Controller
         $this->typeModel = $this->model('Type');
         $this->sizeModel = $this->model('Size');
         $this->permissionModel = $this->model('Permission');
-        $this->cashModel = $this->model('Size');
+        $this->sizehModel = $this->model('Size');
         $this->permissionsArray = array_column($this->permissionModel->getPermissionsByUserId($_SESSION['extUserId']), 'pName');
 
     }
@@ -130,17 +130,13 @@ class Manages extends Controller
                 }
             } else if ($manageId == 2) {
                 $data = [
-                    'price' => isset($_POST['price']) ? trim($_POST['price']) : '0',
-                    'dType' => isset($_POST['dType']) ? trim($_POST['dType']) : '0',
-                    'gName' => isset($_POST['gName']) ? trim($_POST['gName']) : '',
+                    'tName' => isset($_POST['tName']) ? trim($_POST['tName']) : '',
                     'createdBy' => isset($_SESSION['extUserId']) ? trim($_SESSION['extUserId']) : 0
                 ];
                 if ($this->typeModel->addType($data)) {
                     echo json_encode(array("200"));
-                    die();
-                } else {
-                    die();
                 }
+                die();
             } else if ($manageId == 3) {
 
                 $data = [
@@ -149,7 +145,7 @@ class Manages extends Controller
                     'amount' => isset($_POST['amount']) ? trim($_POST['amount']) : 0,
                     'createdBy' => isset($_SESSION['extUserId']) ? trim($_SESSION['extUserId']) : 0
                 ];
-                if ($this->cashModel->addCash($data)) {
+                if ($this->sizehModel->addCash($data)) {
                     echo json_encode(array("200"));
                     die();
                 } else {
@@ -222,15 +218,12 @@ class Manages extends Controller
                     echo json_encode(array($Post_error));
                 }
             } else if ($manageId == 2) {
-                if ($data['pk'] == 1 || $data['pk'] == 2) {
-                    die();
-                }
                 if ($this->typeModel->updateType($data)) {
                     $Post_error = "succ";
                     echo json_encode(array($Post_error));
                 }
             } else if ($manageId == 3) {
-                if ($this->cashModel->updateCash($data)) {
+                if ($this->sizehModel->updateCash($data)) {
                     $Post_error = "succ";
                     echo json_encode(array($Post_error));
                 }
