@@ -7,8 +7,7 @@
     <div class="col-md-12">
         <div class="form-group">
             <label class="control-label" style="text-align: center;font-size: 20px">قم باضافة المطافئ لمنتسب
-                <!--                 --><?php //echo $data['extinguishersSelected']->zName ?>
-            </label><br>
+            </label>
             <input type="hidden" id="dId" value="1">
         </div>
     </div>
@@ -72,7 +71,6 @@
                     <td> <?php echo $exId ?> </td>
                     <td> <?php echo $extinguir->exNo ?> </td>
                     <td> <?php echo $extinguir->exName ?> </td>
-                </tr>
                 </tr>
             <?php endforeach; ?>
             <!--End of Header-->

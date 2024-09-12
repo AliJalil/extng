@@ -88,7 +88,7 @@ button {
 
 .mjk {
     background-color: #a39e94 !important;
-    color: #9D9B99 !important;
+    color: #ffffff !important;
 }
 
 .jkj td {
@@ -1078,13 +1078,13 @@ input::-webkit-input-placeholder {
     .header-img{
         display: none !important;
     }
-      .ma-uyt{
+    .ma-uyt{
         display: none !important;
     }
 
-      .maspanprint2{
-          display: none !important;
-      }
+    .maspanprint2{
+        display: none !important;
+    }
 }
 
 .header-img{
@@ -1920,7 +1920,7 @@ input[type="checkbox"]:focus {
     }
 
     body {
-        margin: 0px !important;
-        padding: 0px, !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
 }
