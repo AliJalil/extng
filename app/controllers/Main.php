@@ -194,21 +194,17 @@ class Main extends Controller
                 $userId = 0;
             }
 
-            $draw = $_POST['draw'];
-            $row = $_POST['start'];
-            $rowperpage = $_POST['length']; // Rows display per page
+            $draw =1;
+            $row = 0;
+            $rowperpage = -1; // Rows display per page
             $iTotalRecords = $this->extingModel->getExtinguisherCount($userId);
 
             if ($rowperpage == -1) {
                 $rowperpage = $iTotalRecords;
             }
-            $columns = $_POST['columns'];
+            $columns =['exId','exName'];
             $newArr = [];
-            foreach ($columns as $column) {
-                if (isset($column['search']['value'])) {
-                    $newArr[trim($column['data'])] = $column['search']['value'];
-                }
-            }
+
 
 
             $result = $this->extingModel->getExtinguisher($row, $rowperpage, $newArr, $userId);

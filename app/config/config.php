@@ -17,7 +17,7 @@ define('URLROOT', 'http://localhost/extng');
 define('SITENAME', 'معلومات المطافئ');
 
 define('PERMISSION_COLUMN', 'pName');
-ini_set('display_errors', 0);
+ini_set('display_errors', 1);
 error_reporting(E_ALL);
 date_default_timezone_set('Asia/Baghdad');
 

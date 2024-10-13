@@ -1,83 +1,76 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 
-<?php require APPROOT . '/views/inc/dteditableScript.php'; ?>
-<script src="<?php echo URLROOT . "/public/js/dtJs.js"; ?>"></script>
 <script src="<?php echo URLROOT . "/public/vendor/qrcode.min.js" ?>"></script>
 <script src="<?php echo URLROOT . "/public/vendor/qrcode2.min.js" ?>"></script>
 
-<style>
-    /* Hide ordering indicators */
-    .dataTables_wrapper .dataTables_paginate .paginate_button {
-        visibility: hidden;
-    }
-</style>
 <table id="detailsTable">
-    <thead>
-    <tr class="mjk" pcolor=#CCCCCC>
-        <th class="exQR_th"></th>
-    </tr>
-    </thead>
-    <!--End of Header-->
-</table>
 
+    <tbody>
+    </tbody>
+</table>
 
 <script>
     $(document).ready(function () {
-        var emTable = $('#detailsTable').DataTable({
-            "processing": true,
-            'serverSide': true,
-            'serverMethod': 'post',
-            'autoWidth': false,
-            dom: '',
-            pageLength: -1,
-            ordering: false,
-            'ajax': {
-                'url': '<?php echo URLROOT . "/main/details" ?>',
-                "type": 'POST',
-                "data": function (data) {
-                },
-            },
-            columns: [
+        // AJAX call to fetch data
+        $.ajax({
+            url: '<?php echo URLROOT . "/main/details2" ?>',
+            type: 'POST',
+            success: function (response) {
+                console.log("Response received:", response);
+                response = JSON.parse(response);
+                var data = response.aaData;  // Extract the 'aaData' array
+                console.log("Data:", data);  // Log the data for debugging
+                var tableBody = $('#detailsTable tbody');
+                tableBody.empty();  // Clear the table body
 
-                {
-                    data: 'exId',
-                    render: function (data, type, row) {
-                        if (type === 'display') {
-                            var qrcodeContainerId = 'qrcode-' + data;
-                            var buttonId = 'btn-' + data;
-                            setTimeout(function () {
-                                var qrcode = new QRCode(document.getElementById(qrcodeContainerId), {
-                                    text: data,
-                                    width: 250,  // Adjust the size as needed
-                                    height: 250,
-                                    colorDark: "#000000",
-                                    colorLight: "#ffffff",
-                                    correctLevel: QRCode.CorrectLevel.H
-                                });
+                if (data && data.length > 0) {
+                    data.forEach(function (row) {
+                        // Use exName if available, otherwise fall back to 'Unknown'
+                        var name = row.exName || "Unknown";
 
-                                // Add click event listener to the button
-                                document.getElementById(buttonId).addEventListener('click', function () {
-                                    var qrCanvas = document.getElementById(qrcodeContainerId).getElementsByTagName('canvas')[0];
-                                    var qrImage = qrCanvas.toDataURL("image/png");
-                                    var link = document.createElement('a');
-                                    link.href = qrImage;
-                                    link.download = row.exName + " " + row.exNo + ".png";
-                                    link.click();
-                                });
-                            }, 0);
-                            return '<div id="' + qrcodeContainerId + '"></div>' +
+                        // Create a unique QR code container and button ID
+                        var qrcodeContainerId = 'qrcode-' + row.exId;
+                        var buttonId = 'btn-' + row.exId;
 
-                                '<div>' + row.exName + " " + row.exNo + '</div>'+
-                                '<button class="not-print" id="' + buttonId + '">تحميل</button><br><br>'
-                                ;
-                        }
-                        return data;
-                    }
+                        // Append row with QR code and download button
+                        var newRow = `
+                            <tr>
+                                <td style="height: 9.5cm;page-break-inside: avoid;" ><div id="${qrcodeContainerId}">
+                                ${name} ${row.exNo}
+                                </div></td>
+
+                                <td><button class="not-print" id="${buttonId}">تحميل</button></td>
+                            </tr>
+                        `;
+                        tableBody.append(newRow);
+
+                        // Generate QR code
+                        var qrcode = new QRCode(document.getElementById(qrcodeContainerId), {
+                            text: row.exId,
+                            width: 250,
+                            height: 250,
+                            colorDark: "#000000",
+                            colorLight: "#ffffff",
+                            correctLevel: QRCode.CorrectLevel.H
+                        });
+
+                        // Attach click event to download button
+                        document.getElementById(buttonId).addEventListener('click', function () {
+                            var qrCanvas = document.getElementById(qrcodeContainerId).getElementsByTagName('canvas')[0];
+                            var qrImage = qrCanvas.toDataURL("image/png");
+                            var link = document.createElement('a');
+                            link.href = qrImage;
+                            link.download = name + " " + row.exNo + ".png";
+                            link.click();
+                        });
+                    });
+                } else {
+                    console.error("No data found in response.");
                 }
-            ],
-            buttons: [],
-        })
+            },
+            error: function (xhr, status, error) {
+                console.error("Error in AJAX request:", error);
+            }
+        });
     });
 </script>
-
-
