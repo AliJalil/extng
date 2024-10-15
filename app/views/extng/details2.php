@@ -9,6 +9,84 @@
     </tbody>
 </table>
 
+<style>
+
+
+
+    table{
+        Width:100%!important;
+    }
+    .SH_bg_img{
+        width:100%;
+    }
+
+    .SH_label_cont{
+        width: 24%;
+        margin:0px;
+        padding: 0px;
+        display: inline-block;
+    }
+    .SH_label{
+        Wdith:100%;
+        position: relative;
+    }
+
+    
+
+    .SH_qr_code{
+        Width: 29%;
+        position: absolute;
+        right: 9.75%;
+        bottom: 10.7%;
+      }
+
+      .SH_qr_code img{
+        Width:100%;
+      }
+
+      .SH_exNum{
+        display: block;
+        position: absolute;
+        right: 9%;
+        Width: 30%;
+        top: 57.4%;
+        font-size: 120%;
+      }
+
+    .SH_name{
+        display:block;
+        position: absolute;
+        left: 4%;
+        Width: 45%;
+        bottom: 3%;
+        background-color: #fff;
+        font-size: 56%;
+        padding: 2%;
+        border-radius: 4px;
+      }
+
+      @media print {
+        .SH_label_cont{
+            page-break-inside: avoid;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            margin-top:0.5cm;
+        }
+
+        @page {
+            margin: 0;
+        }
+
+      }
+
+
+
+
+</style>
+
 <script>
     $(document).ready(function () {
         // AJAX call to fetch data
@@ -34,12 +112,16 @@
 
                         // Append row with QR code and download button
                         var newRow = `
-                            <tr>
-                                <td style="height: 9.5cm;page-break-inside: avoid;" ><div id="${qrcodeContainerId}">
-                                ${name} ${row.exNo}
-                                </div></td>
+                            <tr class="SH_label_cont">
+                                <td class="SH_label" >
+                                    <img class="SH_bg_img" src="<?php echo URLROOT . '/public/images/statics/qr-bg.jpg'?>"/>
+                                    <label class="SH_exNum">${row.exNo}</label>
+                                    <div class="SH_qr_code" id="${qrcodeContainerId}">
+                                    </div>
+                                    <label class="SH_name">${name}</label>
+                                </td>
 
-                                <td><button class="not-print" id="${buttonId}">تحميل</button></td>
+                                
                             </tr>
                         `;
                         tableBody.append(newRow);
@@ -54,16 +136,9 @@
                             correctLevel: QRCode.CorrectLevel.H
                         });
 
-                        // Attach click event to download button
-                        document.getElementById(buttonId).addEventListener('click', function () {
-                            var qrCanvas = document.getElementById(qrcodeContainerId).getElementsByTagName('canvas')[0];
-                            var qrImage = qrCanvas.toDataURL("image/png");
-                            var link = document.createElement('a');
-                            link.href = qrImage;
-                            link.download = name + " " + row.exNo + ".png";
-                            link.click();
-                        });
+                        
                     });
+                    window.print();
                 } else {
                     console.error("No data found in response.");
                 }
