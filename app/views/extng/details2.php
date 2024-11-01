@@ -10,9 +10,6 @@
 </table>
 
 <style>
-
-
-
     table{
         Width:100%!important;
     }
@@ -21,23 +18,23 @@
     }
 
     .SH_label_cont{
-        width: 24%;
+        width: 12cm;
         margin:0px;
         padding: 0px;
         display: inline-block;
     }
     .SH_label{
-        Wdith:100%;
+        width:100%;
         position: relative;
     }
 
     
 
     .SH_qr_code{
-        Width: 29%;
+        Width: 23%;
         position: absolute;
-        right: 9.75%;
-        bottom: 10.7%;
+        right: 9.6%;
+        bottom: 6.4%;
       }
 
       .SH_qr_code img{
@@ -48,21 +45,22 @@
         display: block;
         position: absolute;
         right: 9%;
-        Width: 30%;
-        top: 57.4%;
-        font-size: 120%;
+        Width: 33%;
+        top: 61.4%;
+        font-size: 245%;
       }
 
     .SH_name{
         display:block;
         position: absolute;
-        left: 4%;
-        Width: 45%;
-        bottom: 3%;
+        right: 13%;
+        Width: 42%;
+        bottom: 71%;
         background-color: #fff;
-        font-size: 56%;
+        font-size: 58%;
         padding: 2%;
-        border-radius: 4px;
+        border-radius: 1px;
+        text-align: right;
       }
 
       @media print {
@@ -81,7 +79,6 @@
         }
 
       }
-
 
 
 
@@ -114,7 +111,7 @@
                         var newRow = `
                             <tr class="SH_label_cont">
                                 <td class="SH_label" >
-                                    <img class="SH_bg_img" src="<?php echo URLROOT . '/public/images/statics/qr-bg.jpg'?>"/>
+                                    <img class="SH_bg_img" src="<?php echo URLROOT . '/public/images/statics/qr-bg.png'?>"/>
                                     <label class="SH_exNum">${row.exNo}</label>
                                     <div class="SH_qr_code" id="${qrcodeContainerId}">
                                     </div>
