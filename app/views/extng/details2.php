@@ -10,6 +10,7 @@
 </table>
 
 <style>
+    
     table{
         Width:100%!important;
     }
@@ -18,23 +19,23 @@
     }
 
     .SH_label_cont{
-        width: 12cm;
+        width:21cm;
         margin:0px;
         padding: 0px;
         display: inline-block;
     }
     .SH_label{
-        width:100%;
+        Wdith:100%;
         position: relative;
     }
 
     
 
     .SH_qr_code{
-        Width: 23%;
+        Width: 22%;
         position: absolute;
-        right: 9.6%;
-        bottom: 6.4%;
+        right: 9%;
+        bottom: 11.4%;
       }
 
       .SH_qr_code img{
@@ -45,22 +46,21 @@
         display: block;
         position: absolute;
         right: 9%;
-        Width: 33%;
-        top: 61.4%;
-        font-size: 245%;
+        Width: 21%;
+        top: 53.9%;
+        font-size: 1cm;
       }
 
     .SH_name{
         display:block;
         position: absolute;
-        right: 13%;
-        Width: 42%;
-        bottom: 71%;
+        left: 4%;
+        Width: 45%;
+        bottom: 3%;
         background-color: #fff;
-        font-size: 58%;
+        font-size: 0.4cm;
         padding: 2%;
-        border-radius: 1px;
-        text-align: right;
+        border-radius: 4px;
       }
 
       @media print {
@@ -71,7 +71,6 @@
         body, html {
             margin: 0;
             padding: 0;
-            margin-top:0.5cm;
         }
 
         @page {
@@ -79,7 +78,6 @@
         }
 
       }
-
 
 
 </style>
@@ -111,7 +109,7 @@
                         var newRow = `
                             <tr class="SH_label_cont">
                                 <td class="SH_label" >
-                                    <img class="SH_bg_img" src="<?php echo URLROOT . '/public/images/statics/qr-bg.png'?>"/>
+                                    <img class="SH_bg_img" src="<?php echo URLROOT . '/public/images/statics/qr-bg.jpg'?>"/>
                                     <label class="SH_exNum">${row.exNo}</label>
                                     <div class="SH_qr_code" id="${qrcodeContainerId}">
                                     </div>
